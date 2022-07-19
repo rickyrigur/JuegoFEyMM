@@ -203,10 +203,15 @@ public class gameManager : MonoBehaviour
                 Ensayos6Cartas(24, 8, 24, 8, 24, 8, 28, 4);
                 break;
 
-            case 6:
+            case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
+                    // 72 Perro Amarillo - 57 Pelota Naranja Chica - 73 Perro Amarillo chico - 56 Pelota Naranja 
+                Ensayos6Cartas(76, 53, 77, 52, 72, 57, 73, 56);
                 break;
 
-            case 7:
+            case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica
+                    // 12 Auto Amarillo - 17 Auto Naranja chico - 32 Flor Amarilla - 37 Flor Naranja chica 
+                    // 33 Flor Amarilla chica - 37 Flor Naranja chica - 12 Auto Amarillo
+                Ensayos9Cartas(16, 13, 36, 33, 12, 17, 32, 37, 33, 37, 12);
                 break;
 
             case 8:
@@ -311,21 +316,41 @@ public class gameManager : MonoBehaviour
 
     private void Ensayos9Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cart7, int cart8, int cart9, int cartM1, int cartM2)
     {
+        Pos1 = new Vector3(-40, -20, 0) ;
+        Pos2 = new Vector3(-30, -15, 0);
+        Pos3 = new Vector3(-20, -20, 0);
+        Pos4 = new Vector3(-10, -15, 0);
+        Pos5 = new Vector3(0, -20, 0);
+        Pos6 = new Vector3(10, -15, 0);
+        Pos7 = new Vector3(20, -20, 0);
+        Pos8 = new Vector3(30, -15, 0);
+        Pos9 = new Vector3(40, -20, 0);
+        Vector3 escala = new Vector3(0.35f, 0.35f, 0);
+
         List<Vector3> posiciones;
         if (esRandom)
             posiciones = PosicionRandom(9);
         else
             posiciones = PosicionSinRandom(9);
 
-        carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation);
-        carta2 = Instantiate(cartas[cart2], Pos2, transform.rotation);
-        carta3 = Instantiate(cartas[cart3], Pos3, transform.rotation);
-        carta4 = Instantiate(cartas[cart4], Pos4, transform.rotation);
-        carta5 = Instantiate(cartas[cart5], Pos5, transform.rotation);
-        carta6 = Instantiate(cartas[cart6], Pos6, transform.rotation);
-        carta7 = Instantiate(cartas[cart5], Pos5, transform.rotation);
-        carta8 = Instantiate(cartas[cart6], Pos6, transform.rotation);
-        carta9 = Instantiate(cartas[cart5], Pos5, transform.rotation);
+        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
+        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
+        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
+        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
+        carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
+        carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
+        carta7 = Instantiate(cartas[cart7], posiciones[6], transform.rotation);
+        carta8 = Instantiate(cartas[cart8], posiciones[7], transform.rotation);
+        carta9 = Instantiate(cartas[cart9], posiciones[8], transform.rotation);
+        carta1.transform.localScale = escala;
+        carta2.transform.localScale = escala;
+        carta3.transform.localScale = escala;
+        carta4.transform.localScale = escala;
+        carta5.transform.localScale = escala;
+        carta6.transform.localScale = escala;
+        carta7.transform.localScale = escala;
+        carta8.transform.localScale = escala;
+        carta9.transform.localScale = escala;
         cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
         cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
         cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);

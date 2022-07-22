@@ -27,6 +27,12 @@ public class gameManager : MonoBehaviour
     public int niv = 0;
     private int[] numNiveles;
     private int contador;
+    private List<string> subNivel4;
+    private string[] subNivel5;
+    private string[] subNivel6;
+    private string[] subNivel7;
+    private string[] subNivel8;
+    private List<string> prueba;
 
     private Vector3 screenPoint;
     private Vector3 offset;
@@ -62,6 +68,29 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         numNiveles = new[] { 0, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8 };
+        prueba = new List<string> { "C", "F" };
+        //Debug.Log("Lista prueba");
+        //foreach (var item in prueba)
+        //{
+        //    Debug.Log(item.ToString());
+        //}
+        subNivel4 = new List<string> { "F", "F", "F", "F", "C", "C" };
+        Debug.Log("Lista subNivel4");
+        Debug.Log(subNivel4.Count);
+        foreach (string item in subNivel4.ToArray())
+        {
+            Debug.Log(item.ToString());
+        }
+        prueba.Add(subNivel4.ToString());
+        Debug.Log("Lista prueba 2");
+        foreach (string item in prueba)
+        {
+            Debug.Log(item.ToString());
+        }
+        subNivel5 = new[] { "C", "C", "C", "C", "F", "F" };
+        subNivel6 = new[] { "T", "T", "T", "T", "F", "F", "C", "C" };
+        subNivel7 = new[] { "OC", "OC", "OC", "OC", "OC", "OC", "C", "C", "C" };
+        subNivel8 = new[] { "OT", "OT", "OT", "OT", "OT", "OT", "T", "T", "T" };
         nivel = 0;
         niv = 0;
         contador = 0;
@@ -204,8 +233,8 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
-                    // 72 Perro Amarillo - 57 Pelota Naranja Chica - 73 Perro Amarillo chico - 56 Pelota Naranja 
-                Ensayos6Cartas(76, 53, 77, 52, 72, 57, 73, 56);
+                    // 72 Perro Amarillo - 57 Pelota Naranja Chica -  Perro Naranja chico -  Pelota Amarilla 
+                Ensayos6Cartas(76, 53, 77, 52, 72, 57, 73, 56); //modificar cartas de muestra
                 break;
 
             case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica

@@ -27,12 +27,24 @@ public class gameManager : MonoBehaviour
     public int niv = 0;
     private int[] numNiveles;
     private int contador;
-    private List<string> subNivel4;
-    private string[] subNivel5;
-    private string[] subNivel6;
-    private string[] subNivel7;
-    private string[] subNivel8;
+
     private List<string> prueba;
+
+    private List<string> nivel1;
+    private List<string> nivel2;
+    private List<string> nivel3;
+    private List<string> nivel4;
+    private List<string> nivel5;
+    private List<string> nivel6;
+    private List<string> nivel7;
+    private List<string> nivel8;
+
+    private List<string> subNivel4;
+    private List<string> subNivel5;
+    private List<string> subNivel6;
+    private List<string> subNivel7;
+    private List<string> subNivel8;
+    
 
     private Vector3 screenPoint;
     private Vector3 offset;
@@ -67,30 +79,25 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //prueba.AddRange(subNivel4);
         numNiveles = new[] { 0, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8 };
-        prueba = new List<string> { "C", "F" };
-        //Debug.Log("Lista prueba");
-        //foreach (var item in prueba)
-        //{
-        //    Debug.Log(item.ToString());
-        //}
+
+        prueba = new List<string> { "F" };
+        nivel1 = new List<string> { "C" };
+        nivel2 = new List<string> { "C", "F" };
+        nivel3 = new List<string> { "C", "F" };
+        nivel4 = new List<string> { "C", "F" };
+        nivel5 = new List<string> { "F", "C" };
+        nivel6 = new List<string> { "T", "C" };
+        nivel7 = new List<string> { "C", "CO" };
+        nivel8 = new List<string> { "T", "TO" };
+
         subNivel4 = new List<string> { "F", "F", "F", "F", "C", "C" };
-        Debug.Log("Lista subNivel4");
-        Debug.Log(subNivel4.Count);
-        foreach (string item in subNivel4.ToArray())
-        {
-            Debug.Log(item.ToString());
-        }
-        prueba.Add(subNivel4.ToString());
-        Debug.Log("Lista prueba 2");
-        foreach (string item in prueba)
-        {
-            Debug.Log(item.ToString());
-        }
-        subNivel5 = new[] { "C", "C", "C", "C", "F", "F" };
-        subNivel6 = new[] { "T", "T", "T", "T", "F", "F", "C", "C" };
-        subNivel7 = new[] { "OC", "OC", "OC", "OC", "OC", "OC", "C", "C", "C" };
-        subNivel8 = new[] { "OT", "OT", "OT", "OT", "OT", "OT", "T", "T", "T" };
+        subNivel5 = new List<string> { "C", "C", "C", "C", "F", "F" };
+        subNivel6 = new List<string> { "T", "T", "T", "T", "F", "F", "C", "C" };
+        subNivel7 = new List<string> { "CO", "CO", "CO", "CO", "CO", "CO", "C", "C", "C" };
+        subNivel8 = new List<string> { "TO", "TO", "TO", "TO", "TO", "TO", "T", "T", "T" };
+
         nivel = 0;
         niv = 0;
         contador = 0;
@@ -251,7 +258,16 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    List<Vector3> PosicionRandom(int CantidadPosiciones)  //REVISAR PAR HACER DESPUES
+    List<string> RandomizarEnsayos (List<string> subNivel)
+    {
+
+        System.Random rnd = new System.Random();
+        subNivel = subNivel.OrderBy(item => rnd.Next()).ToList<string>();
+
+        return subNivel;
+    }
+
+     List<Vector3> PosicionRandom(int CantidadPosiciones)  
     {
         List<Vector3> posicionesMax = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6, Pos7, Pos8, Pos9 };
 
@@ -281,7 +297,7 @@ public class gameManager : MonoBehaviour
 
     }
 
-    List<Vector3> PosicionSinRandom(int CantidadPosiciones)  //REVISAR PAR HACER DESPUES
+    List<Vector3> PosicionSinRandom(int CantidadPosiciones)  
     {
         List<Vector3> posicionesMax = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6, Pos7, Pos8, Pos9 };
 

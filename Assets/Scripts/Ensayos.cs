@@ -96,89 +96,89 @@ public class Ensayos : MonoBehaviour
 
     private void Ensayos4Cartas(int cart1, int cart2, int cart3, int cart4, int cartM1, int cartM2)
     {
-        List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(4);
-        else
-            posiciones = PosicionSinRandom(4);
+        //List<Vector3> posiciones;
+        //if (esRandom)
+        //    posiciones = PosicionRandom(4);
+        //else
+        //    posiciones = PosicionSinRandom(4);
 
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
-        cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-        cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra1.tag = "Muestra";
-        cartaMuestra3.tag = "Muestra";
+        //carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
+        //carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
+        //carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
+        //carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
+        //cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
+        //cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
+        //cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra1.tag = "Muestra";
+        //cartaMuestra3.tag = "Muestra";
     }
 
     private void Ensayos6Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cartM1, int cartM2)
     {
         List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(6);
-        else
-            posiciones = PosicionSinRandom(6);
+        //if (esRandom)
+        //    posiciones = PosicionRandom(6);
+        //else
+        //    posiciones = PosicionSinRandom(6);
 
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
-        carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
-        carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
-        cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-        cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra1.tag = "Muestra";
-        cartaMuestra3.tag = "Muestra";
+        //carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
+        //carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
+        //carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
+        //carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
+        //carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
+        //carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
+        //cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
+        //cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
+        //cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra1.tag = "Muestra";
+        //cartaMuestra3.tag = "Muestra";
     }
 
     private void Ensayos9Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cart7, int cart8, int cart9, int cartM1, int cartM2)
     {
-        Pos1 = new Vector3(-40, -20, 0);
-        Pos2 = new Vector3(-30, -15, 0);
-        Pos3 = new Vector3(-20, -20, 0);
-        Pos4 = new Vector3(-10, -15, 0);
-        Pos5 = new Vector3(0, -20, 0);
-        Pos6 = new Vector3(10, -15, 0);
-        Pos7 = new Vector3(20, -20, 0);
-        Pos8 = new Vector3(30, -15, 0);
-        Pos9 = new Vector3(40, -20, 0);
-        Vector3 escala = new Vector3(0.35f, 0.35f, 0);
+        //Pos1 = new Vector3(-40, -20, 0);
+        //Pos2 = new Vector3(-30, -15, 0);
+        //Pos3 = new Vector3(-20, -20, 0);
+        //Pos4 = new Vector3(-10, -15, 0);
+        //Pos5 = new Vector3(0, -20, 0);
+        //Pos6 = new Vector3(10, -15, 0);
+        //Pos7 = new Vector3(20, -20, 0);
+        //Pos8 = new Vector3(30, -15, 0);
+        //Pos9 = new Vector3(40, -20, 0);
+        //Vector3 escala = new Vector3(0.35f, 0.35f, 0);
 
-        List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(9);
-        else
-            posiciones = PosicionSinRandom(9);
+        //List<Vector3> posiciones;
+        //if (esRandom)
+        //    posiciones = PosicionRandom(9);
+        //else
+        //    posiciones = PosicionSinRandom(9);
 
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
-        carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
-        carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
-        carta7 = Instantiate(cartas[cart7], posiciones[6], transform.rotation);
-        carta8 = Instantiate(cartas[cart8], posiciones[7], transform.rotation);
-        carta9 = Instantiate(cartas[cart9], posiciones[8], transform.rotation);
-        carta1.transform.localScale = escala;
-        carta2.transform.localScale = escala;
-        carta3.transform.localScale = escala;
-        carta4.transform.localScale = escala;
-        carta5.transform.localScale = escala;
-        carta6.transform.localScale = escala;
-        carta7.transform.localScale = escala;
-        carta8.transform.localScale = escala;
-        carta9.transform.localScale = escala;
-        cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-        cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra1.tag = "Muestra";
-        cartaMuestra3.tag = "Muestra";
+        //carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
+        //carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
+        //carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
+        //carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
+        //carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
+        //carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
+        //carta7 = Instantiate(cartas[cart7], posiciones[6], transform.rotation);
+        //carta8 = Instantiate(cartas[cart8], posiciones[7], transform.rotation);
+        //carta9 = Instantiate(cartas[cart9], posiciones[8], transform.rotation);
+        //carta1.transform.localScale = escala;
+        //carta2.transform.localScale = escala;
+        //carta3.transform.localScale = escala;
+        //carta4.transform.localScale = escala;
+        //carta5.transform.localScale = escala;
+        //carta6.transform.localScale = escala;
+        //carta7.transform.localScale = escala;
+        //carta8.transform.localScale = escala;
+        //carta9.transform.localScale = escala;
+        //cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
+        //cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
+        //cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        //cartaMuestra1.tag = "Muestra";
+        //cartaMuestra3.tag = "Muestra";
     }
 
 

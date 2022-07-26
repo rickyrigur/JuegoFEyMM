@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     public int correctos;
     //[HideInInspector]
     public int incorrectos;
+    private string respuestaCorrecta;
 
     public Text textoCorrectos;
     public Text textoIncorrectos;
@@ -26,7 +27,7 @@ public class gameManager : MonoBehaviour
     public int nivel = 0;
     public int niv = 0;
     private int[] numNiveles;
-    private int contador;
+    private int contSubNiveles;
 
     private List<string> prueba;
 
@@ -44,6 +45,9 @@ public class gameManager : MonoBehaviour
     private List<string> subNivel6;
     private List<string> subNivel7;
     private List<string> subNivel8;
+
+    private List<List<string>> listaNiveles;
+    private List<List<string>> listaSubNiveles;
     
 
     private Vector3 screenPoint;
@@ -51,18 +55,11 @@ public class gameManager : MonoBehaviour
     private List<int> posUtilizadas = new List<int>();
     private bool esRandom;
     private Vector3 Pos1;
-    private Vector3 Pos2;
-    private Vector3 Pos3;
-    private Vector3 Pos4;
-    private Vector3 Pos5;
-    private Vector3 Pos6;
-    private Vector3 Pos7;
-    private Vector3 Pos8;
-    private Vector3 Pos9;
 
     private Vector3 PosCanasta1;
     private Vector3 PosCanasta2;
 
+    private List<int> indiceCartas;
     private GameObject carta1;
     private GameObject carta2;
     private GameObject carta3;
@@ -72,6 +69,8 @@ public class gameManager : MonoBehaviour
     private GameObject carta7;
     private GameObject carta8;
     private GameObject carta9;
+
+    private List<GameObject> poolGameobjectCartas;
 
     private GameObject cartaMuestra1;
     private GameObject cartaMuestra3;
@@ -98,23 +97,21 @@ public class gameManager : MonoBehaviour
         subNivel7 = new List<string> { "CO", "CO", "CO", "CO", "CO", "CO", "C", "C", "C" };
         subNivel8 = new List<string> { "TO", "TO", "TO", "TO", "TO", "TO", "T", "T", "T" };
 
+        listaNiveles = new List<List<string>> { prueba, nivel1, nivel2, nivel3, nivel4, nivel5, nivel6, nivel7, nivel8 };
+        listaSubNiveles = new List<List<string>> { subNivel4, subNivel5, subNivel6, subNivel7, subNivel8 };
+        poolGameobjectCartas = new List<GameObject> { carta1, carta2, carta3, carta4, carta5, carta6, carta7, carta8, carta9 };
+
         nivel = 0;
         niv = 0;
-        contador = 0;
         correctos = 0;
         incorrectos = 0;
         
-        Pos1 = new Vector3(-38, -16, 0);
-        Pos2 = new Vector3(-22, -16, 0);
-        Pos3 = new Vector3(-7, -16, 0);
-        Pos4 = new Vector3(8,-16, 0);
-        Pos5 = new Vector3(23, -16, 0);
-        Pos6 = new Vector3(38, -16, 0);
+        Pos1 = new Vector3(-0, -13, 0);
 
         PosCanasta1 = new Vector3(-26, -0.5f, 0);
         PosCanasta2 = new Vector3(26, -0.5f, 0);
                 
-        Niveles();
+        Niveles(listaNiveles[nivel]);
     }
 
     // Update is called once per frame
@@ -169,33 +166,51 @@ public class gameManager : MonoBehaviour
 
     public void SiguienteNivel()
     {
-        contador++;
-        nivel = numNiveles[contador];
 
-        if (nivel > 1 && nivel == numNiveles[contador - 1])
+        //Debug.Log("nivel: " + nivel + " niv: " + niv);
+
+        Destruir();
+
+        if (nivel > 3 && niv == 0)
         {
-            niv++;
-            esRandom = true;
-        }
-        if (nivel != numNiveles[contador - 1])
-        {
-            correctos = 0;
-            incorrectos = 0;
-            niv = 0;
-            esRandom = false;
+            listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
         }
 
-        Debug.Log("nivel: " + nivel + " niv: " + niv);
+        Niveles(listaNiveles[nivel]);
 
-        Destruir(nivel);
-        Niveles();
+
+
+        //contador++;
+        //nivel = numNiveles[contador];
+
+        //if (nivel > 1 && nivel == numNiveles[contador - 1])
+        //{
+        //    niv++;
+        //    esRandom = true;
+        //}
+        //if (nivel != numNiveles[contador - 1])
+        //{
+        //    correctos = 0;
+        //    incorrectos = 0;
+        //    niv = 0;
+        //    esRandom = false;
+        //}
+
+        //Debug.Log("nivel: " + nivel + " niv: " + niv);
+
+        //Destruir();
+        //Niveles();
     }
-    private void Destruir(int nivelGuardado)
+
+    private void Destruir()
     {
-        GameObject.Destroy(carta1);
-        GameObject.Destroy(carta2);
-        GameObject.Destroy(carta3);
-        GameObject.Destroy(carta4);
+        indiceCartas = new List<int>();
+
+        foreach(GameObject carta in poolGameobjectCartas)
+        {
+            GameObject.Destroy(carta);
+        }
+
         GameObject.Destroy(cartaMuestra1);
         GameObject.Destroy(cartaMuestra3);
         if (nivel >= 3)
@@ -211,51 +226,140 @@ public class gameManager : MonoBehaviour
         }
         
     }
-    private void Niveles()
+    private void Niveles(List<string> listaNivel)
     {
         switch (nivel) //Ensayos
         {
             case 0: //48 Pelota Azul - 68 Perro Azul
-                Ensayos4Cartas(48, 68, 48, 68, 48, 68); 
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 48, 68, 48, 68};
+                Ensayos4Cartas(indiceCartas, 48, 68);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}       
                 break;
 
             case 1: //48 Pelota Azul - 64 Perro Rojo
-                Ensayos4Cartas(48, 64, 48, 64, 48, 64); 
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel +" - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 48, 64, 48, 64 };
+                
+                Ensayos4Cartas(indiceCartas, 48, 64);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 2: // 44 Pelota Roja - 68 Perro Azul - 48 Pelota Azul - 64 Perro Rojo
-                Ensayos4Cartas(44, 68, 48, 64, 48, 64); 
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 44, 68, 48, 64 };
+                
+                Ensayos4Cartas(indiceCartas, 48, 64);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 3: //4 Auto Rojo - 28 Flor Azul - 8 Auto Azul - 24 Flor Roja
-                Ensayos6Cartas(4, 28, 4, 28, 4, 28, 8, 24); 
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 4, 28, 4, 28, 4, 28 };
+                Ensayos4Cartas(indiceCartas, 8, 24);
+                //Ensayos6Cartas(indiceCartas, 8, 24);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 4: // 64 Perro Rojo - 48 Pelota Azul - 68 Perro Azul - 44 Pelota Roja
-                Ensayos6Cartas(64, 48, 64, 48, 64, 48, 68, 44);
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 64, 48, 64, 48, 64, 48 };
+                Ensayos4Cartas(indiceCartas, 68, 44);
+                //Ensayos6Cartas(indiceCartas, 68, 44);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 5: // 24 Flor Roja - 8 Auto Azul - 28 Flor Azul - 4 Auto Rojo
-                Ensayos6Cartas(24, 8, 24, 8, 24, 8, 28, 4);
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 24, 8, 24, 8, 24, 8 };
+                Ensayos4Cartas(indiceCartas, 28, 4);
+                //Ensayos6Cartas(indiceCartas, 28, 4);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
                     // 72 Perro Amarillo - 57 Pelota Naranja Chica -  Perro Naranja chico -  Pelota Amarilla 
-                Ensayos6Cartas(76, 53, 77, 52, 72, 57, 73, 56); //modificar cartas de muestra
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 76, 53, 77, 52, 72, 57 };
+                Ensayos4Cartas(indiceCartas, 73, 56);
+                //Ensayos6Cartas(indiceCartas, 73, 56); //modificar cartas de muestra
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica
                     // 12 Auto Amarillo - 17 Auto Naranja chico - 32 Flor Amarilla - 37 Flor Naranja chica 
                     // 33 Flor Amarilla chica - 37 Flor Naranja chica - 12 Auto Amarillo
-                Ensayos9Cartas(16, 13, 36, 33, 12, 17, 32, 37, 33, 37, 12);
+                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+
+                indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };
+                Ensayos4Cartas(indiceCartas, 37, 12);
+                //Ensayos9Cartas(indiceCartas, 37, 12);
+                //if (niv == listaNivel.Count - 1)
+                //{
+                //    nivel++;
+                //    niv = 0;
+                //}
                 break;
 
             case 8:
+
+                indiceCartas = new List<int> { };
                 break;
 
             case 9:
                 break;
         }
+
+        if (niv == listaNivel.Count - 1)
+        {
+            nivel++;
+            niv = 0;
+        }
+        else
+            niv++;
     }
 
     List<string> RandomizarEnsayos (List<string> subNivel)
@@ -267,68 +371,18 @@ public class gameManager : MonoBehaviour
         return subNivel;
     }
 
-     List<Vector3> PosicionRandom(int CantidadPosiciones)  
+     
+
+    private void Ensayos4Cartas(List<int> indiceCarta, int cartM1, int cartM2)
     {
-        List<Vector3> posicionesMax = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6, Pos7, Pos8, Pos9 };
-
-        List<Vector3> posicionesMid = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6 };
-
-        List<Vector3> posicionesLow = new List<Vector3> { Pos1, Pos2, Pos3, Pos4 };
-
-        List<Vector3> randomized = new List<Vector3>();
-
-        if (CantidadPosiciones == 9)
+        for (int i = 0; i < indiceCarta.Count; i++)
         {
-            System.Random rnd = new System.Random();
-            randomized = posicionesMax.OrderBy(item => rnd.Next()).ToList<Vector3>();
+            poolGameobjectCartas[i] = Instantiate(cartas[indiceCarta[i]], Pos1, transform.rotation);
         }
-        else if (CantidadPosiciones == 6)
-        {
-            System.Random rnd = new System.Random();
-            randomized = posicionesMid.OrderBy(item => rnd.Next()).ToList<Vector3>();
-        }
-        else
-        {
-            System.Random rnd = new System.Random();
-            randomized = posicionesLow.OrderBy(item => rnd.Next()).ToList<Vector3>();
-        }
-
-        return randomized;
-
-    }
-
-    List<Vector3> PosicionSinRandom(int CantidadPosiciones)  
-    {
-        List<Vector3> posicionesMax = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6, Pos7, Pos8, Pos9 };
-
-        List<Vector3> posicionesMid = new List<Vector3> { Pos1, Pos2, Pos3, Pos4, Pos5, Pos6 };
-
-        List<Vector3> posicionesLow = new List<Vector3> { Pos1, Pos2, Pos3, Pos4 };
-
-        List<Vector3> returnedList = new List<Vector3> { };
-
-        if (CantidadPosiciones == 9)
-            returnedList = posicionesMax;                    
-        else if (CantidadPosiciones == 6)
-            returnedList = posicionesMid;
-        else
-            returnedList = posicionesLow;
-
-        return returnedList;
-    }
-
-    private void Ensayos4Cartas(int cart1, int cart2, int cart3, int cart4, int cartM1, int cartM2)
-    {
-        List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(4);
-        else
-            posiciones = PosicionSinRandom(4);
-
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation); 
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
+        //carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation); 
+        //carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
+        //carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
+        //carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
         cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
         cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
         cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
@@ -337,72 +391,43 @@ public class gameManager : MonoBehaviour
         cartaMuestra3.tag = "Muestra";
     }
 
-    private void Ensayos6Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cartM1, int cartM2)
-    {
-        List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(6);
-        else
-            posiciones = PosicionSinRandom(6);
+    //private void Ensayos6Cartas(List<int> indiceCarta, int cartM1, int cartM2)
+    //{
 
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
-        carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
-        carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
-        cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-        cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra1.tag = "Muestra";
-        cartaMuestra3.tag = "Muestra";
-    }
+    //    carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation);
+    //    carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
+    //    carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
+    //    carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
+    //    carta5 = Instantiate(cartas[cart5], Pos1, transform.rotation);
+    //    carta6 = Instantiate(cartas[cart6], Pos1, transform.rotation);
+    //    cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
+    //    cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
+    //    cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+    //    cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+    //    cartaMuestra1.tag = "Muestra";
+    //    cartaMuestra3.tag = "Muestra";
+    //}
 
-    private void Ensayos9Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cart7, int cart8, int cart9, int cartM1, int cartM2)
-    {
-        Pos1 = new Vector3(-40, -20, 0) ;
-        Pos2 = new Vector3(-30, -15, 0);
-        Pos3 = new Vector3(-20, -20, 0);
-        Pos4 = new Vector3(-10, -15, 0);
-        Pos5 = new Vector3(0, -20, 0);
-        Pos6 = new Vector3(10, -15, 0);
-        Pos7 = new Vector3(20, -20, 0);
-        Pos8 = new Vector3(30, -15, 0);
-        Pos9 = new Vector3(40, -20, 0);
-        Vector3 escala = new Vector3(0.35f, 0.35f, 0);
+    //private void Ensayos9Cartas(List<int> indiceCarta, int cartM1, int cartM2)
+    //{
+        
 
-        List<Vector3> posiciones;
-        if (esRandom)
-            posiciones = PosicionRandom(9);
-        else
-            posiciones = PosicionSinRandom(9);
-
-        carta1 = Instantiate(cartas[cart1], posiciones[0], transform.rotation);
-        carta2 = Instantiate(cartas[cart2], posiciones[1], transform.rotation);
-        carta3 = Instantiate(cartas[cart3], posiciones[2], transform.rotation);
-        carta4 = Instantiate(cartas[cart4], posiciones[3], transform.rotation);
-        carta5 = Instantiate(cartas[cart5], posiciones[4], transform.rotation);
-        carta6 = Instantiate(cartas[cart6], posiciones[5], transform.rotation);
-        carta7 = Instantiate(cartas[cart7], posiciones[6], transform.rotation);
-        carta8 = Instantiate(cartas[cart8], posiciones[7], transform.rotation);
-        carta9 = Instantiate(cartas[cart9], posiciones[8], transform.rotation);
-        carta1.transform.localScale = escala;
-        carta2.transform.localScale = escala;
-        carta3.transform.localScale = escala;
-        carta4.transform.localScale = escala;
-        carta5.transform.localScale = escala;
-        carta6.transform.localScale = escala;
-        carta7.transform.localScale = escala;
-        carta8.transform.localScale = escala;
-        carta9.transform.localScale = escala;
-        cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-        cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra1.tag = "Muestra";
-        cartaMuestra3.tag = "Muestra";
-    }
+    //    carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation);
+    //    carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
+    //    carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
+    //    carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
+    //    carta5 = Instantiate(cartas[cart5], Pos1, transform.rotation);
+    //    carta6 = Instantiate(cartas[cart6], Pos1, transform.rotation);
+    //    carta7 = Instantiate(cartas[cart7], Pos1, transform.rotation);
+    //    carta8 = Instantiate(cartas[cart8], Pos1, transform.rotation);
+    //    carta9 = Instantiate(cartas[cart9], Pos1, transform.rotation);
+    //    cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
+    //    cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
+    //    cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+    //    cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+    //    cartaMuestra1.tag = "Muestra";
+    //    cartaMuestra3.tag = "Muestra";
+    //}
 
 
     private void OnMouseDown()

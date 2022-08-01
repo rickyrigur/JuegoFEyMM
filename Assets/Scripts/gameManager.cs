@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
 {
     decimal tiempoJuego;
     decimal tiempoInactivo;
+    private int contador;
 
     //[HideInInspector]
     public int correctos;
@@ -141,9 +142,7 @@ public class gameManager : MonoBehaviour
             if (carta != null)
             {
                 carta.transform.position = objPosition;
-            }
-            
-                
+            }                
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -156,11 +155,17 @@ public class gameManager : MonoBehaviour
             if(hit.collider != null && hit.collider.gameObject.tag != "Canasta" && hit.collider.gameObject.tag != "Muestra" && carta != null)
             {
                 if (hit.collider.OverlapPoint((Vector2)canasta1.transform.position))
+                {
                     canasta1.GetComponent<Canasta1>().EstaEnCanasta1(carta.GetComponent<Collider2D>());
+                    TraerSiguienteCarta();
+                }
+                    
                 else if(hit.collider.OverlapPoint((Vector2)canasta2.transform.position))
+                {
                     canasta2.GetComponent<Canasta2>().EstaEnCanasta2(carta.GetComponent<Collider2D>());
+                    TraerSiguienteCarta();
+                }                    
             }
-
         }
     }
 
@@ -169,8 +174,7 @@ public class gameManager : MonoBehaviour
 
         //Debug.Log("nivel: " + nivel + " niv: " + niv);
 
-        Destruir();
-
+        
         if (nivel > 3 && niv == 0)
         {
             listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
@@ -206,7 +210,7 @@ public class gameManager : MonoBehaviour
     {
         indiceCartas = new List<int>();
 
-        foreach(GameObject carta in poolGameobjectCartas)
+        foreach (GameObject carta in poolGameobjectCartas)
         {
             GameObject.Destroy(carta);
         }
@@ -234,83 +238,71 @@ public class gameManager : MonoBehaviour
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 48, 68, 48, 68};
+
+                
                 Ensayos4Cartas(indiceCartas, 48, 68);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}       
+                  
                 break;
 
             case 1: //48 Pelota Azul - 64 Perro Rojo
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel +" - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 48, 64, 48, 64 };
                 
+                
                 Ensayos4Cartas(indiceCartas, 48, 64);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+                
                 break;
 
             case 2: // 44 Pelota Roja - 68 Perro Azul - 48 Pelota Azul - 64 Perro Rojo
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 44, 68, 48, 64 };
                 
                 Ensayos4Cartas(indiceCartas, 48, 64);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+
                 break;
 
             case 3: //4 Auto Rojo - 28 Flor Azul - 8 Auto Azul - 24 Flor Roja
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 4, 28, 4, 28, 4, 28 };
-                Ensayos4Cartas(indiceCartas, 8, 24);
-                //Ensayos6Cartas(indiceCartas, 8, 24);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+                
+                                
+                Ensayos4Cartas(indiceCartas, 8, 24);                
+                
                 break;
 
             case 4: // 64 Perro Rojo - 48 Pelota Azul - 68 Perro Azul - 44 Pelota Roja
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 64, 48, 64, 48, 64, 48 };
+                
+                               
                 Ensayos4Cartas(indiceCartas, 68, 44);
-                //Ensayos6Cartas(indiceCartas, 68, 44);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+
                 break;
 
             case 5: // 24 Flor Roja - 8 Auto Azul - 28 Flor Azul - 4 Auto Rojo
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 24, 8, 24, 8, 24, 8 };
+                
+                             
                 Ensayos4Cartas(indiceCartas, 28, 4);
-                //Ensayos6Cartas(indiceCartas, 28, 4);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+                
                 break;
 
             case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
@@ -318,14 +310,12 @@ public class gameManager : MonoBehaviour
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
+                Destruir();
                 indiceCartas = new List<int> { 76, 53, 77, 52, 72, 57 };
-                Ensayos4Cartas(indiceCartas, 73, 56);
-                //Ensayos6Cartas(indiceCartas, 73, 56); //modificar cartas de muestra
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+                
+                            
+                Ensayos4Cartas(indiceCartas, 73, 56);                
+
                 break;
 
             case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica
@@ -334,19 +324,18 @@ public class gameManager : MonoBehaviour
                 Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
-                indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };
+                Destruir();
+                indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };                
+                              
                 Ensayos4Cartas(indiceCartas, 37, 12);
-                //Ensayos9Cartas(indiceCartas, 37, 12);
-                //if (niv == listaNivel.Count - 1)
-                //{
-                //    nivel++;
-                //    niv = 0;
-                //}
+                
                 break;
 
             case 8:
-
+                Destruir();
                 indiceCartas = new List<int> { };
+
+                Ensayos4Cartas(indiceCartas, 0, 0);
                 break;
 
             case 9:
@@ -357,6 +346,8 @@ public class gameManager : MonoBehaviour
         {
             nivel++;
             niv = 0;
+            correctos = 0;
+            incorrectos = 0;
         }
         else
             niv++;
@@ -371,18 +362,25 @@ public class gameManager : MonoBehaviour
         return subNivel;
     }
 
-     
+     private void TraerSiguienteCarta()
+    {        
+        if (contador < indiceCartas.Count)
+            poolGameobjectCartas[contador] = Instantiate(cartas[indiceCartas[contador]], Pos1, transform.rotation);
+
+        contador++;
+    }
 
     private void Ensayos4Cartas(List<int> indiceCarta, int cartM1, int cartM2)
     {
-        for (int i = 0; i < indiceCarta.Count; i++)
-        {
-            poolGameobjectCartas[i] = Instantiate(cartas[indiceCarta[i]], Pos1, transform.rotation);
-        }
-        //carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation); 
-        //carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
-        //carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
-        //carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
+        canasta1.GetComponent<Canasta1>().CargarCartaMuestra(cartas[cartM1]);
+        canasta2.GetComponent<Canasta2>().CargarCartaMuestra(cartas[cartM2]);
+        canasta1.GetComponent<Canasta1>().CargarCriterioComparacion(listaNiveles[nivel][niv].ToString());
+        canasta2.GetComponent<Canasta2>().CargarCriterioComparacion(listaNiveles[nivel][niv].ToString());
+        
+        contador = 0;
+
+        TraerSiguienteCarta();
+
         cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
         cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
         cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
@@ -391,55 +389,11 @@ public class gameManager : MonoBehaviour
         cartaMuestra3.tag = "Muestra";
     }
 
-    //private void Ensayos6Cartas(List<int> indiceCarta, int cartM1, int cartM2)
-    //{
-
-    //    carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation);
-    //    carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
-    //    carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
-    //    carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
-    //    carta5 = Instantiate(cartas[cart5], Pos1, transform.rotation);
-    //    carta6 = Instantiate(cartas[cart6], Pos1, transform.rotation);
-    //    cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-    //    cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-    //    cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-    //    cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-    //    cartaMuestra1.tag = "Muestra";
-    //    cartaMuestra3.tag = "Muestra";
-    //}
-
-    //private void Ensayos9Cartas(List<int> indiceCarta, int cartM1, int cartM2)
-    //{
-        
-
-    //    carta1 = Instantiate(cartas[cart1], Pos1, transform.rotation);
-    //    carta2 = Instantiate(cartas[cart2], Pos1, transform.rotation);
-    //    carta3 = Instantiate(cartas[cart3], Pos1, transform.rotation);
-    //    carta4 = Instantiate(cartas[cart4], Pos1, transform.rotation);
-    //    carta5 = Instantiate(cartas[cart5], Pos1, transform.rotation);
-    //    carta6 = Instantiate(cartas[cart6], Pos1, transform.rotation);
-    //    carta7 = Instantiate(cartas[cart7], Pos1, transform.rotation);
-    //    carta8 = Instantiate(cartas[cart8], Pos1, transform.rotation);
-    //    carta9 = Instantiate(cartas[cart9], Pos1, transform.rotation);
-    //    cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
-    //    cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-    //    cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-    //    cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-    //    cartaMuestra1.tag = "Muestra";
-    //    cartaMuestra3.tag = "Muestra";
-    //}
-
-
+    
     private void OnMouseDown()
     {
         //offset = cartas.GameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         
     }
    
-    //private void OnMouseDrag()
-    //{
-    //    Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-    //    Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-    //    transform.position = curPosition;
-    //}
 }

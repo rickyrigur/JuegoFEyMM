@@ -13,6 +13,8 @@ public class Canasta1 : MonoBehaviour
     private Formas forma;
     private Tamanos tamano;
     private Cantidad cantidad;
+    private GameObject cartaMuestra;
+    private string criteriosComparacion;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,15 @@ public class Canasta1 : MonoBehaviour
         script = GameManager.GetComponent<gameManager>();
     }
 
+    public void CargarCartaMuestra(GameObject carta)
+    {
+        cartaMuestra = carta;
+    }
+
+    public void CargarCriterioComparacion(string criterio)
+    {
+        criteriosComparacion = criterio;
+    }
 
     public void EstaEnCanasta1(Collider2D collision)
     {
@@ -28,99 +39,50 @@ public class Canasta1 : MonoBehaviour
         tamano = collision.gameObject.GetComponent<Carta>().tamano;
         cantidad = collision.gameObject.GetComponent<Carta>().cantidad;
 
-        switch (script.nivel)
+        Debug.Log("Criterio comparacion: " + criteriosComparacion);
+        Debug.Log("Carta muestra:" + cartaMuestra.GetComponent<Carta>().forma);
+        Debug.Log("Carta en canasta: "+ forma);
+
+        switch (criteriosComparacion)
         {
-            case 0: //Forma
-                if(forma == Formas.pelota)
+            case "F": //Forma
+                if(cartaMuestra.GetComponent<Carta>().forma == forma)
                     script.correctos++;
                 else
                     script.incorrectos++;
 
                 break;
-
-            case 1: //Color
-                if(color == Colores.azul)
+            case "C": //Color
+                if (cartaMuestra.GetComponent<Carta>().color == color)
                     script.correctos++;
                 else
                     script.incorrectos++;
 
                 break;
-
-            case 2:
-                if (script.niv == 0) //Color
-                {
-                    if (color == Colores.azul)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
-                else if (script.niv == 1) //Forma
-                {
-                    if (forma == Formas.pelota)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
+            case "T": //Tamano
+                if (cartaMuestra.GetComponent<Carta>().tamano == tamano)
+                    script.correctos++;
+                else
+                    script.incorrectos++;
 
                 break;
-            case 3:
-                if (script.niv == 0) //Color
-                {
-                    if (color == Colores.azul)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
-                else if (script.niv == 1) //Forma
-                {
-                    if (forma == Formas.auto)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
+            case "CO": //Color opuesto
+                if (cartaMuestra.GetComponent<Carta>().color != color)
+                    script.correctos++;
+                else
+                    script.incorrectos++;
+
                 break;
-            case 4:
-                if (script.niv == 0) //Color
-                {
-                    if (color == Colores.azul)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
-                else if (script.niv == 1) //Forma
-                {
-                    if (forma == Formas.perro)
-                        script.correctos++;
-                    else
-                        script.incorrectos++;
-                }
-                else if (script.niv == 2) //???
-                {
-                    //if (forma == Formas.auto)
-                    //    script.correctos++;
-                    //else
-                    //    script.incorrectos++;
-                }
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-            case 10:
+            case "TO": //Tamano opuesto
+                if (cartaMuestra.GetComponent<Carta>().tamano != tamano)
+                    script.correctos++;
+                else
+                    script.incorrectos++;
+
                 break;
         }
         //Debug.Log("Correcto: " + script.correctos);
         //Debug.Log("Incorrecto: " + script.incorrectos);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
 }

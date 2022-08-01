@@ -116,7 +116,7 @@ public class Ensayos : MonoBehaviour
 
     private void Ensayos6Cartas(int cart1, int cart2, int cart3, int cart4, int cart5, int cart6, int cartM1, int cartM2)
     {
-        List<Vector3> posiciones;
+        //List<Vector3> posiciones;
         //if (esRandom)
         //    posiciones = PosicionRandom(6);
         //else

@@ -47,7 +47,8 @@ public class gameManager : MonoBehaviour
     private List<string> subNivel7;
     private List<string> subNivel8;
 
-    private List<List<string>> listaNiveles;
+    [HideInInspector]
+    public List<List<string>> listaNiveles;
     private List<List<string>> listaSubNiveles;
     
 
@@ -241,8 +242,8 @@ public class gameManager : MonoBehaviour
                 Destruir();
                 indiceCartas = new List<int> { 48, 68, 48, 68};
 
-                
-                Ensayos4Cartas(indiceCartas, 48, 68);
+
+                ArmarEnsayo(indiceCartas, 48, 68);
                   
                 break;
 
@@ -252,9 +253,9 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 48, 64, 48, 64 };
-                
-                
-                Ensayos4Cartas(indiceCartas, 48, 64);
+
+
+                ArmarEnsayo(indiceCartas, 48, 64);
                 
                 break;
 
@@ -264,8 +265,8 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 44, 68, 48, 64 };
-                
-                Ensayos4Cartas(indiceCartas, 48, 64);
+
+                ArmarEnsayo(indiceCartas, 48, 64);
 
                 break;
 
@@ -275,9 +276,9 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 4, 28, 4, 28, 4, 28 };
-                
-                                
-                Ensayos4Cartas(indiceCartas, 8, 24);                
+
+
+                ArmarEnsayo(indiceCartas, 8, 24);                
                 
                 break;
 
@@ -287,9 +288,9 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 64, 48, 64, 48, 64, 48 };
-                
-                               
-                Ensayos4Cartas(indiceCartas, 68, 44);
+
+
+                ArmarEnsayo(indiceCartas, 68, 44);
 
                 break;
 
@@ -299,9 +300,9 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 24, 8, 24, 8, 24, 8 };
-                
-                             
-                Ensayos4Cartas(indiceCartas, 28, 4);
+
+
+                ArmarEnsayo(indiceCartas, 28, 4);
                 
                 break;
 
@@ -312,9 +313,9 @@ public class gameManager : MonoBehaviour
 
                 Destruir();
                 indiceCartas = new List<int> { 76, 53, 77, 52, 72, 57 };
-                
-                            
-                Ensayos4Cartas(indiceCartas, 73, 56);                
+
+
+                ArmarEnsayo(indiceCartas, 73, 56);                
 
                 break;
 
@@ -325,17 +326,18 @@ public class gameManager : MonoBehaviour
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
-                indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };                
-                              
-                Ensayos4Cartas(indiceCartas, 37, 12);
+                indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };
+
+                ArmarEnsayo(indiceCartas, 37, 12);
                 
                 break;
 
-            case 8:
+            case 8: // 76 Perro naranja - 53 Pelota Amarilla chica - 77 Perro Naranja chico - 52 Pelota Amarilla
+                    // 57 Pelota Naranja Chica - 73 Perro Amarillo - 57 Pelota Naranja 
                 Destruir();
-                indiceCartas = new List<int> { };
+                indiceCartas = new List<int> { 76, 53, 77, 52, 76, 53, 77, 52, 57 };
 
-                Ensayos4Cartas(indiceCartas, 0, 0);
+                ArmarEnsayo(indiceCartas, 73, 56);
                 break;
 
             case 9:
@@ -370,7 +372,7 @@ public class gameManager : MonoBehaviour
         contador++;
     }
 
-    private void Ensayos4Cartas(List<int> indiceCarta, int cartM1, int cartM2)
+    private void ArmarEnsayo(List<int> indiceCarta, int cartM1, int cartM2)
     {
         canasta1.GetComponent<Canasta1>().CargarCartaMuestra(cartas[cartM1]);
         canasta2.GetComponent<Canasta2>().CargarCartaMuestra(cartas[cartM2]);

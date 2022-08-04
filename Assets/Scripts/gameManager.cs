@@ -22,13 +22,12 @@ public class gameManager : MonoBehaviour
     public GameObject[] cartas;
     public GameObject canasta1;
     public GameObject canasta2;
+    public 
     Transform carta;
 
     //[HideInInspector]
     public int nivel = 0;
     public int niv = 0;
-    private int[] numNiveles;
-    private int contSubNiveles;
 
     private List<string> prueba;
 
@@ -81,7 +80,7 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         //prueba.AddRange(subNivel4);
-        numNiveles = new[] { 0, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8 };
+        //numNiveles = new[] { 0, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8 };
 
         prueba = new List<string> { "F" };
         nivel1 = new List<string> { "C" };

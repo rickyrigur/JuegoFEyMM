@@ -11,6 +11,7 @@ TagManager:
   - Canasta
   - Boton
   - Muestra
+  - TextoOso
   layers:
   - Default
   - TransparentFX

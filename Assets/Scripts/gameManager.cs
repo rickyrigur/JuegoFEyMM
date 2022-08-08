@@ -18,12 +18,14 @@ public class gameManager : MonoBehaviour
 
     public Text textoCorrectos;
     public Text textoIncorrectos;
+    public Text textoOso;
 
     public GameObject[] cartas;
     public GameObject canasta1;
     public GameObject canasta2;
-    public 
-    Transform carta;
+    public Transform carta;
+    public GameObject audioManager;
+    AudioManager script;
 
     //[HideInInspector]
     public int nivel = 0;
@@ -50,11 +52,6 @@ public class gameManager : MonoBehaviour
     public List<List<string>> listaNiveles;
     private List<List<string>> listaSubNiveles;
     
-
-    private Vector3 screenPoint;
-    private Vector3 offset;
-    private List<int> posUtilizadas = new List<int>();
-    private bool esRandom;
     private Vector3 Pos1;
 
     private Vector3 PosCanasta1;
@@ -106,6 +103,7 @@ public class gameManager : MonoBehaviour
         niv = 0;
         correctos = 0;
         incorrectos = 0;
+        script = audioManager.GetComponent<AudioManager>();
         
         Pos1 = new Vector3(-0, -13, 0);
 
@@ -388,6 +386,17 @@ public class gameManager : MonoBehaviour
         cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
         cartaMuestra1.tag = "Muestra";
         cartaMuestra3.tag = "Muestra";
+    }
+
+    public void InteractuarConOso ()
+    {
+        if (nivel == 1)
+        {            
+            textoOso.text = "";
+            script.CargarAudio(0);
+            script.EmpezarAudio();
+        }
+
     }
 
     

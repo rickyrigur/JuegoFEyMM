@@ -26,5 +26,10 @@ public class AudioManager : MonoBehaviour
     {
         audioEnsayo.Stop();
     }
+
+    public float TiempoAudio()
+    {
+        return audioEnsayo.clip.length;
+    }
     
 }

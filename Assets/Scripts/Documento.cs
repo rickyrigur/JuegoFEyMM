@@ -14,9 +14,12 @@ public class Documento : MonoBehaviour
     {
         script = GetComponent<gameManager>();
 
-        Directory.CreateDirectory(Application.streamingAssetsPath + "/Documento_Logs/");
+        //Directory.CreateDirectory(Application.streamingAssetsPath + "/Documento_Logs/");
+        //txtDocumento = Application.streamingAssetsPath + "/Documento_Logs/" + "Resultados" + ".txt";
 
-        txtDocumento = Application.streamingAssetsPath + "/Documento_Logs/" + "Resultados" + ".txt";
+        Directory.CreateDirectory(Application.persistentDataPath + "/Documento_Logs/");
+
+        txtDocumento = Application.persistentDataPath + "/Documento_Logs/" + "Resultados" + ".txt";
 
         CrearDocumento();
     }

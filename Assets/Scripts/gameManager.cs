@@ -391,11 +391,30 @@ public class gameManager : MonoBehaviour
     public void InteractuarConOso ()
     {
         if (nivel == 1)
-        {            
-            textoOso.text = "";
-            script.CargarAudio(0);
-            script.EmpezarAudio();
+        {
+            StartCoroutine(playPrimerNivel());
         }
+    }
+
+    IEnumerator playPrimerNivel()
+    {
+        textoOso.text = "";
+        script.CargarAudio(0);
+        script.EmpezarAudio();
+        yield return new WaitForSeconds(script.TiempoAudio());
+        script.CargarAudio(1);
+        script.EmpezarAudio();
+
+        Vector3 escalaInicialCarta1 = cartaMuestra1.transform.localScale;
+        Vector3 escalainicialCarta2 = cartaMuestra3.transform.localScale;
+
+        for(float time = 0; time < 1f * 2; time += Time.deltaTime)
+        {
+            float progress = Mathf.PingPong(time, 1f) / 1f;
+            cartaMuestra1.transform.localScale = Vector3.Lerp(escalaInicialCarta1, new Vector3(0.6f, 0.6f, 0), progress);
+            yield return null;
+        }
+        cartaMuestra1.transform.localScale = escalaInicialCarta1;
 
     }
 

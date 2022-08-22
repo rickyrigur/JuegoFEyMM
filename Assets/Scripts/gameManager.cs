@@ -405,19 +405,32 @@ public class gameManager : MonoBehaviour
         script.CargarAudio(1);
         script.EmpezarAudio();
 
-        Vector3 escalaInicialCarta1 = cartaMuestra1.transform.localScale;
-        Vector3 escalainicialCarta2 = cartaMuestra3.transform.localScale;
+        Vector3 escalaInicialCanasta1 = canasta1.transform.localScale;
+        Vector3 escalainicialCanasta2 = canasta2.transform.localScale;
 
+        yield return new WaitForSeconds(5f);
         for(float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            cartaMuestra1.transform.localScale = Vector3.Lerp(escalaInicialCarta1, new Vector3(0.6f, 0.6f, 0), progress);
+            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
             yield return null;
         }
-        cartaMuestra1.transform.localScale = escalaInicialCarta1;
+        canasta1.transform.localScale = escalaInicialCanasta1;
 
+        yield return new WaitForSeconds(3f);
+        for (float time = 0; time < 1f * 2; time += Time.deltaTime)
+        {
+            float progress = Mathf.PingPong(time, 1f) / 1f;
+            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+            yield return null;
+        }
+        canasta2.transform.localScale = escalainicialCanasta2;
     }
 
+    private void CargarAudiosNiveles()
+    {
+
+    }
     
     private void OnMouseDown()
     {

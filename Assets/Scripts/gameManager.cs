@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     //[HideInInspector]
     public int incorrectos;
     private string respuestaCorrecta;
+    private bool finTutorial = false;
 
     public Text textoCorrectos;
     public Text textoIncorrectos;
@@ -26,6 +27,7 @@ public class gameManager : MonoBehaviour
     public Transform carta;
     public GameObject audioManager;
     AudioManager script;
+    public GameObject opciones;
 
     //[HideInInspector]
     public int nivel = 0;
@@ -104,7 +106,7 @@ public class gameManager : MonoBehaviour
         correctos = 0;
         incorrectos = 0;
         script = audioManager.GetComponent<AudioManager>();
-        
+
         Pos1 = new Vector3(-0, -13, 0);
 
         PosCanasta1 = new Vector3(-26, -0.5f, 0);
@@ -169,39 +171,14 @@ public class gameManager : MonoBehaviour
 
     public void SiguienteNivel()
     {
-
         //Debug.Log("nivel: " + nivel + " niv: " + niv);
-
-        
-        if (nivel > 3 && niv == 0)
+        if (finTutorial)
         {
-            listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
+            if (nivel > 3 && niv == 0)
+                listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
+
+            Niveles(listaNiveles[nivel]);
         }
-
-        Niveles(listaNiveles[nivel]);
-
-
-
-        //contador++;
-        //nivel = numNiveles[contador];
-
-        //if (nivel > 1 && nivel == numNiveles[contador - 1])
-        //{
-        //    niv++;
-        //    esRandom = true;
-        //}
-        //if (nivel != numNiveles[contador - 1])
-        //{
-        //    correctos = 0;
-        //    incorrectos = 0;
-        //    niv = 0;
-        //    esRandom = false;
-        //}
-
-        //Debug.Log("nivel: " + nivel + " niv: " + niv);
-
-        //Destruir();
-        //Niveles();
     }
 
     private void Destruir()
@@ -390,10 +367,17 @@ public class gameManager : MonoBehaviour
 
     public void InteractuarConOso ()
     {
-        if (nivel == 1)
+        Debug.Log(opciones.activeSelf);
+
+        if (opciones.activeSelf == false)
         {
-            StartCoroutine(playPrimerNivel());
-        }
+            if (nivel == 1)
+                StartCoroutine(playPrimerNivel());
+            else
+            {
+                opciones.SetActive(true);
+            }            
+        }        
     }
 
     IEnumerator playPrimerNivel()
@@ -425,13 +409,30 @@ public class gameManager : MonoBehaviour
             yield return null;
         }
         canasta2.transform.localScale = escalainicialCanasta2;
+        finTutorial = true;
     }
 
     private void CargarAudiosNiveles()
     {
 
     }
-    
+
+    public void EmpezarAudio()
+    {
+        script.EmpezarAudio();
+        opciones.SetActive(false);
+    }
+
+    public void FinalizarJuego()
+    {
+        #if UNITY_STANDALONE
+                Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
+
     private void OnMouseDown()
     {
         //offset = cartas.GameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));

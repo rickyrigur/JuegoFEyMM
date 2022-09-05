@@ -115,8 +115,8 @@ public class gameManager : MonoBehaviour
 
         Pos1 = new Vector3(-0, -13, 0);
 
-        PosCanasta1 = new Vector3(-26, -0.5f, 0);
-        PosCanasta2 = new Vector3(26, -0.5f, 0);
+        PosCanasta1 = new Vector3(-26, -2f, 0);
+        PosCanasta2 = new Vector3(26, -2f, 0);
                 
         Niveles(listaNiveles[nivel]);
     }
@@ -149,6 +149,7 @@ public class gameManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null && hit.collider.gameObject.tag != "Canasta" && hit.collider.gameObject.tag != "Muestra")
             {
+                Debug.Log("Entra cuando aprieto");
                 carta = hit.collider.gameObject.GetComponent<Transform>();
             }
         }
@@ -159,6 +160,7 @@ public class gameManager : MonoBehaviour
             Vector2 objPosition = Camera.main.ScreenToWorldPoint(MousePosition);
             if (carta != null)
             {
+                Debug.Log("Entra cuando mantengo");
                 sostiene = true;
                 carta.transform.position = objPosition;
             }
@@ -174,15 +176,18 @@ public class gameManager : MonoBehaviour
 
             if(hit.collider != null && hit.collider.gameObject.tag != "Canasta" && hit.collider.gameObject.tag != "Muestra" && carta != null)
             {
+                Debug.Log("Entra cuando suelto");
                 if (hit.collider.OverlapPoint((Vector2)canasta1.transform.position))
                 {
                     canasta1.GetComponent<Canasta1>().EstaEnCanasta1(carta.GetComponent<Collider2D>());
+                    carta.GetComponent<Collider2D>().enabled = false;
                     TraerSiguienteCarta();
                 }
                     
                 else if(hit.collider.OverlapPoint((Vector2)canasta2.transform.position))
                 {
                     canasta2.GetComponent<Canasta2>().EstaEnCanasta2(carta.GetComponent<Collider2D>());
+                    carta.GetComponent<Collider2D>().enabled = false;
                     TraerSiguienteCarta();
                 }                    
             }
@@ -214,6 +219,7 @@ public class gameManager : MonoBehaviour
             script.CargarAudio(3); //Audio Ensayo 0 Error
             EmpezarAudio();
             yield return new WaitForSeconds(script.TiempoAudio());
+            
         }
     }
 
@@ -273,10 +279,11 @@ public class gameManager : MonoBehaviour
                 else
                 {
                     StartCoroutine(RevisarPrimerNivelCompleto());
+                    Niveles(listaNiveles[0]);
                     nivel = 0;
+                    niv = 0;
                     correctos = 0;
                     incorrectos = 0;
-                    Niveles(listaNiveles[nivel]);
                 }                    
 
                 break;
@@ -411,6 +418,8 @@ public class gameManager : MonoBehaviour
         cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
         cartaMuestra1.tag = "Muestra";
         cartaMuestra3.tag = "Muestra";
+        cartaMuestra1.GetComponent<Collider2D>().enabled = false;
+        cartaMuestra3.GetComponent<Collider2D>().enabled = false;
     }
 
     public void InteractuarConOso ()

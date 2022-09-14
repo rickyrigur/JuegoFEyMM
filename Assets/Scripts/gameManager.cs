@@ -292,7 +292,12 @@ public class gameManager : MonoBehaviour
                 Destruir();                    
                 indiceCartas = new List<int> { 48, 64, 48, 64 };
 
-                ArmarEnsayo(indiceCartas, 48, 64);                      
+                ArmarEnsayo(indiceCartas, 48, 64);        
+                
+                if(script.EstaReproduciendo())
+                {
+                    StartCoroutine(playSegundoNivel());
+                }
 
                 break;
 
@@ -478,6 +483,35 @@ public class gameManager : MonoBehaviour
             canasta2.transform.localScale = escalainicialCanasta2;
             finTutorial = true;
         }        
+    }
+
+    IEnumerator playSegundoNivel()
+    {
+        script.CargarAudio(4);
+        script.EmpezarAudio();
+        yield return new WaitForSeconds(script.TiempoAudio());
+
+        Vector3 escalaInicialCanasta1 = canasta1.transform.localScale;
+        Vector3 escalainicialCanasta2 = canasta2.transform.localScale;
+
+        yield return new WaitForSeconds(7f);
+        for (float time = 0; time < 1f * 2; time += Time.deltaTime)
+        {
+            float progress = Mathf.PingPong(time, 1f) / 1f;
+            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+            yield return null;
+        }
+        canasta1.transform.localScale = escalaInicialCanasta1;
+
+        yield return new WaitForSeconds(3f);
+        for (float time = 0; time < 1f * 2; time += Time.deltaTime)
+        {
+            float progress = Mathf.PingPong(time, 1f) / 1f;
+            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+            yield return null;
+        }
+        canasta2.transform.localScale = escalainicialCanasta2;
+
     }
 
     private void CargarAudiosNiveles()

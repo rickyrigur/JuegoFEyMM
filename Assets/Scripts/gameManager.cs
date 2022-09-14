@@ -117,8 +117,8 @@ public class gameManager : MonoBehaviour
 
         PosCanasta1 = new Vector3(-26, -2f, 0);
         PosCanasta2 = new Vector3(26, -2f, 0);
-                
-        Niveles(listaNiveles[nivel]);
+
+        Niveles();// listaNiveles[nivel]);
     }
 
     private void MostrarInforme()
@@ -181,6 +181,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta1.GetComponent<Canasta1>().EstaEnCanasta1(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
+                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                     TraerSiguienteCarta();
                 }
                     
@@ -188,6 +189,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta2.GetComponent<Canasta2>().EstaEnCanasta2(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
+                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                     TraerSiguienteCarta();
                 }                    
             }
@@ -197,12 +199,28 @@ public class gameManager : MonoBehaviour
     public void SiguienteNivel()
     {
         //Debug.Log("nivel: " + nivel + " niv: " + niv);
+
+        if (nivel == 0)
+        {
+            StartCoroutine(RevisarPrimerNivelCompleto());
+        }            
+
+        if (niv == listaNiveles[nivel].Count - 1)
+        {
+            nivel++;
+            niv = 0;
+            correctos = 0;
+            incorrectos = 0;
+        }
+        else
+            niv++;
+
         if (finTutorial)
         {
             if (nivel > 3 && niv == 0)
                 listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
 
-            Niveles(listaNiveles[nivel]);
+            Niveles();// listaNiveles[nivel]);
         }
     }
 
@@ -219,7 +237,12 @@ public class gameManager : MonoBehaviour
             script.CargarAudio(3); //Audio Ensayo 0 Error
             EmpezarAudio();
             yield return new WaitForSeconds(script.TiempoAudio());
-            
+
+            nivel = 0;
+            niv = 0;
+            correctos = 0;
+            incorrectos = 0;
+            Niveles();// listaNiveles[0]);
         }
     }
 
@@ -247,12 +270,12 @@ public class gameManager : MonoBehaviour
         }
         
     }
-    private void Niveles(List<string> listaNivel)
+    private void Niveles()//List<string> listaNivel)
     {
         switch (nivel) //Ensayos
         {
             case 0: //48 Pelota Azul - 68 Perro Azul
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -263,33 +286,18 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 1: //48 Pelota Azul - 64 Perro Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel +" - Subnivel: " + niv);
 
-                Destruir();
+                Destruir();                    
+                indiceCartas = new List<int> { 48, 64, 48, 64 };
 
-                if (correctos == 4)
-                {
-                    StartCoroutine(RevisarPrimerNivelCompleto());
-                    
-                    indiceCartas = new List<int> { 48, 64, 48, 64 };
-
-                    ArmarEnsayo(indiceCartas, 48, 64);
-                }
-                else
-                {
-                    StartCoroutine(RevisarPrimerNivelCompleto());
-                    Niveles(listaNiveles[0]);
-                    nivel = 0;
-                    niv = 0;
-                    correctos = 0;
-                    incorrectos = 0;
-                }                    
+                ArmarEnsayo(indiceCartas, 48, 64);                      
 
                 break;
 
             case 2: // 44 Pelota Roja - 68 Perro Azul - 48 Pelota Azul - 64 Perro Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -300,7 +308,7 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 3: //4 Auto Rojo - 28 Flor Azul - 8 Auto Azul - 24 Flor Roja
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -312,7 +320,7 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 4: // 64 Perro Rojo - 48 Pelota Azul - 68 Perro Azul - 44 Pelota Roja
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -324,7 +332,7 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 5: // 24 Flor Roja - 8 Auto Azul - 28 Flor Azul - 4 Auto Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -337,7 +345,7 @@ public class gameManager : MonoBehaviour
 
             case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
                     // 72 Perro Amarillo - 57 Pelota Naranja Chica -  Perro Naranja chico -  Pelota Amarilla 
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -351,7 +359,7 @@ public class gameManager : MonoBehaviour
             case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica
                     // 12 Auto Amarillo - 17 Auto Naranja chico - 32 Flor Amarilla - 37 Flor Naranja chica 
                     // 33 Flor Amarilla chica - 37 Flor Naranja chica - 12 Auto Amarillo
-                Debug.Log("Cantidad subNiveles: " + listaNivel.Count);
+                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
                 Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
@@ -373,15 +381,15 @@ public class gameManager : MonoBehaviour
                 break;
         }
 
-        if (niv == listaNivel.Count - 1)
-        {
-            nivel++;
-            niv = 0;
-            correctos = 0;
-            incorrectos = 0;
-        }
-        else
-            niv++;
+        //if (niv == listaNivel.Count - 1)
+        //{
+        //    nivel++;
+        //    niv = 0;
+        //    correctos = 0;
+        //    incorrectos = 0;
+        //}
+        //else
+        //    niv++;
     }
 
     List<string> RandomizarEnsayos (List<string> subNivel)
@@ -428,7 +436,7 @@ public class gameManager : MonoBehaviour
 
         if (opciones.activeSelf == false)
         {
-            if (nivel == 1)
+            if (nivel == 0)
                 StartCoroutine(playPrimerNivel());
             else
             {

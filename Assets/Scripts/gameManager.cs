@@ -140,6 +140,9 @@ public class gameManager : MonoBehaviour
         textoIncorrectos.text = "INCORRECTOS: " + incorrectos.ToString();
         MostrarInforme();
 
+        if (script.EstaReproduciendo()) //Mientras haya un audio reproduciendose no permite mover las cartas
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             carta = null;
@@ -202,7 +205,8 @@ public class gameManager : MonoBehaviour
 
         if (nivel == 0)
         {
-            StartCoroutine(RevisarPrimerNivelCompleto());
+            //StartCoroutine(RevisarPrimerNivelCompleto());
+            RevisarPrimerNivelCompleto();
         }            
 
         if (niv == listaNiveles[nivel].Count - 1)
@@ -224,19 +228,21 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    IEnumerator RevisarPrimerNivelCompleto()
+    private void RevisarPrimerNivelCompleto() //IEnumerator RevisarPrimerNivelCompleto()
     {
         if (correctos == 4 && incorrectos == 0)
         {
-            script.CargarAudio(2); //Audio Ensayo 0 Final
-            script.EmpezarAudio();
-            yield return new WaitForSeconds(script.TiempoAudio());
+            CargarAudiosNiveles(2); //Audio Ensayo 0 Final
+            EmpezarAudio();
+            //yield return new WaitForSeconds(0.1f);
+            //yield return null;
         }
         else
         {
-            script.CargarAudio(3); //Audio Ensayo 0 Error
+            CargarAudiosNiveles(3); //Audio Ensayo 0 Error
             EmpezarAudio();
-            yield return new WaitForSeconds(script.TiempoAudio());
+            //yield return new WaitForSeconds(0.1f);
+            //yield return null;
 
             nivel = 0;
             niv = 0;
@@ -308,7 +314,14 @@ public class gameManager : MonoBehaviour
                 Destruir();
                 indiceCartas = new List<int> { 44, 68, 48, 64 };
 
+                if (niv == 0)
+                    CargarAudiosNiveles(5);
+                else
+                    CargarAudiosNiveles(6);
+
                 ArmarEnsayo(indiceCartas, 48, 64);
+
+                EmpezarAudio();
 
                 break;
 
@@ -455,11 +468,11 @@ public class gameManager : MonoBehaviour
         if(!script.EstaReproduciendo())
         {
             textoOso.text = "";
-            script.CargarAudio(0);
-            script.EmpezarAudio();
+            CargarAudiosNiveles(0);
+            EmpezarAudio();
             yield return new WaitForSeconds(script.TiempoAudio());
-            script.CargarAudio(1);
-            script.EmpezarAudio();
+            CargarAudiosNiveles(1);
+            EmpezarAudio();
 
             Vector3 escalaInicialCanasta1 = canasta1.transform.localScale;
             Vector3 escalainicialCanasta2 = canasta2.transform.localScale;
@@ -473,7 +486,7 @@ public class gameManager : MonoBehaviour
             }
             canasta1.transform.localScale = escalaInicialCanasta1;
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             for (float time = 0; time < 1f * 2; time += Time.deltaTime)
             {
                 float progress = Mathf.PingPong(time, 1f) / 1f;
@@ -487,9 +500,9 @@ public class gameManager : MonoBehaviour
 
     IEnumerator playSegundoNivel()
     {
-        script.CargarAudio(4);
-        script.EmpezarAudio();
         yield return new WaitForSeconds(script.TiempoAudio());
+        CargarAudiosNiveles(4);
+        EmpezarAudio();
 
         Vector3 escalaInicialCanasta1 = canasta1.transform.localScale;
         Vector3 escalainicialCanasta2 = canasta2.transform.localScale;
@@ -498,25 +511,25 @@ public class gameManager : MonoBehaviour
         for (float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
-            yield return null;
-        }
-        canasta1.transform.localScale = escalaInicialCanasta1;
-
-        yield return new WaitForSeconds(3f);
-        for (float time = 0; time < 1f * 2; time += Time.deltaTime)
-        {
-            float progress = Mathf.PingPong(time, 1f) / 1f;
             canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
             yield return null;
         }
         canasta2.transform.localScale = escalainicialCanasta2;
 
+        yield return new WaitForSeconds(2f);
+        for (float time = 0; time < 1f * 2; time += Time.deltaTime)
+        {
+            float progress = Mathf.PingPong(time, 1f) / 1f;
+            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+            yield return null;
+        }
+        canasta1.transform.localScale = escalaInicialCanasta1;
+
     }
 
-    private void CargarAudiosNiveles()
+    private void CargarAudiosNiveles(int audio)
     {
-
+        script.CargarAudio(audio);
     }
 
     public void EmpezarAudio()

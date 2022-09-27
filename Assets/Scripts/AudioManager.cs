@@ -31,5 +31,10 @@ public class AudioManager : MonoBehaviour
     {
         return audioEnsayo.clip.length;
     }
+
+    public bool EstaReproduciendo() 
+    {
+        return audioEnsayo.isPlaying;
+    }
     
 }

@@ -25,6 +25,7 @@ public class gameManager : MonoBehaviour
     public Text textoCriterio;
     public Text textoCarta;
     public Text textoSostiene;
+    public Text textoCriteriosNivel;
     private bool sostiene;
 
     public GameObject[] cartas;
@@ -115,8 +116,8 @@ public class gameManager : MonoBehaviour
 
         Pos1 = new Vector3(-0, -13, 0);
 
-        PosCanasta1 = new Vector3(-26, -2f, 0);
-        PosCanasta2 = new Vector3(26, -2f, 0);
+        PosCanasta1 = new Vector3(-8.5f, 0f, 0);
+        PosCanasta2 = new Vector3(8.5f, 0f, 0);
 
         Niveles();// listaNiveles[nivel]);
     }
@@ -125,12 +126,35 @@ public class gameManager : MonoBehaviour
     {
         textoNivel.text = "Nivel: " + nivel.ToString();
         textoSubNivel.text = "Sub Nivel: " + niv.ToString();
-        textoCriterio.text = "Criterio: " + listaNiveles[nivel][niv].ToString();
+        textoCriterio.text = "Criterio: " + listaNiveles[nivel][niv].ToString();        
         if(carta != null)
         {
             textoCarta.text = "Carta: " + carta.name;
         }        
         textoSostiene.text = "Sostiene: " + sostiene.ToString();
+    }
+
+    private void MostrarInformeCriterios(int level)
+    {
+        string textoCriterios = "";
+        int i = 0;
+        textoCriteriosNivel.text = "CritNivel: ";
+        Debug.Log("CritNivel: " + listaNiveles[level].Count);
+        if (listaNiveles[level].Count > 1)
+        {
+            while (i < listaNiveles[nivel].Count)
+            {
+                textoCriterios += listaNiveles[nivel][i].ToString() + ", ";
+                i++;
+            }
+        }
+        else
+        {
+            textoCriterios += listaNiveles[level][0].ToString() + ", ";
+        }
+
+        textoCriteriosNivel.text += textoCriterios;
+
     }
 
     // Update is called once per frame
@@ -184,7 +208,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta1.GetComponent<Canasta1>().EstaEnCanasta1(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
-                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+                    carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
                     TraerSiguienteCarta();
                 }
                     
@@ -192,7 +216,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta2.GetComponent<Canasta2>().EstaEnCanasta2(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
-                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+                    carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
                     TraerSiguienteCarta();
                 }                    
             }
@@ -221,34 +245,51 @@ public class gameManager : MonoBehaviour
 
         if (finTutorial)
         {
+            //if (nivel > 3 && niv == 0)
+            //    listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
             if (nivel > 3 && niv == 0)
+            {
+                string antes = "Antes de cargar subniveles:  ";
+                string despues = "Despues de cargar subniveles:  ";
+                int i = 0;
+                while(i < listaNiveles[nivel].Count)
+                {
+                    antes += listaNiveles[nivel][i].ToString();
+                    i++;
+                }
+                Debug.Log(antes);
+                i = 0;
                 listaNiveles[nivel].AddRange(RandomizarEnsayos(listaSubNiveles[niv])); //Se agrega de forma random los subniveles al nivel
+                while (i < listaNiveles[nivel].Count)
+                {
+                    despues += listaNiveles[nivel][i].ToString();
+                    i++;
+                }
+                Debug.Log(despues);
+            }
+                
 
-            Niveles();// listaNiveles[nivel]);
+            Niveles();
         }
     }
 
-    private void RevisarPrimerNivelCompleto() //IEnumerator RevisarPrimerNivelCompleto()
+    private void RevisarPrimerNivelCompleto()
     {
         if (correctos == 4 && incorrectos == 0)
         {
             CargarAudiosNiveles(2); //Audio Ensayo 0 Final
             EmpezarAudio();
-            //yield return new WaitForSeconds(0.1f);
-            //yield return null;
         }
         else
         {
             CargarAudiosNiveles(3); //Audio Ensayo 0 Error
             EmpezarAudio();
-            //yield return new WaitForSeconds(0.1f);
-            //yield return null;
 
             nivel = 0;
             niv = 0;
             correctos = 0;
             incorrectos = 0;
-            Niveles();// listaNiveles[0]);
+            Niveles();
         }
     }
 
@@ -281,26 +322,28 @@ public class gameManager : MonoBehaviour
         switch (nivel) //Ensayos
         {
             case 0: //48 Pelota Azul - 68 Perro Azul
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 48, 68, 48, 68};
 
                 ArmarEnsayo(indiceCartas, 48, 68);
-                  
+                MostrarInformeCriterios(nivel);
+
                 break;
 
             case 1: //48 Pelota Azul - 64 Perro Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel +" - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel +" - Subnivel: " + niv);
 
                 Destruir();                    
                 indiceCartas = new List<int> { 48, 64, 48, 64 };
 
-                ArmarEnsayo(indiceCartas, 48, 64);        
-                
-                if(script.EstaReproduciendo())
+                ArmarEnsayo(indiceCartas, 48, 64);
+                MostrarInformeCriterios(nivel);
+
+                if (script.EstaReproduciendo())
                 {
                     StartCoroutine(playSegundoNivel());
                 }
@@ -308,8 +351,8 @@ public class gameManager : MonoBehaviour
                 break;
 
             case 2: // 44 Pelota Roja - 68 Perro Azul - 48 Pelota Azul - 64 Perro Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 44, 68, 48, 64 };
@@ -320,71 +363,123 @@ public class gameManager : MonoBehaviour
                     CargarAudiosNiveles(6);
 
                 ArmarEnsayo(indiceCartas, 48, 64);
+                MostrarInformeCriterios(nivel);
 
                 EmpezarAudio();
 
                 break;
 
             case 3: //4 Auto Rojo - 28 Flor Azul - 8 Auto Azul - 24 Flor Roja
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 4, 28, 4, 28, 4, 28 };
 
+                if (niv == 0)
+                    CargarAudiosNiveles(7);
+                else
+                    CargarAudiosNiveles(8);
 
-                ArmarEnsayo(indiceCartas, 8, 24);                
-                
+                ArmarEnsayo(indiceCartas, 8, 24);
+                MostrarInformeCriterios(nivel);
+
+                EmpezarAudio();
+
                 break;
 
             case 4: // 64 Perro Rojo - 48 Pelota Azul - 68 Perro Azul - 44 Pelota Roja
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 64, 48, 64, 48, 64, 48 };
 
+                if (listaNiveles[nivel][niv].ToString() == "F")
+                    CargarAudiosNiveles(9);
+                else
+                    CargarAudiosNiveles(7);
 
                 ArmarEnsayo(indiceCartas, 68, 44);
+                MostrarInformeCriterios(nivel);
+
+                EmpezarAudio();
 
                 break;
 
             case 5: // 24 Flor Roja - 8 Auto Azul - 28 Flor Azul - 4 Auto Rojo
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 24, 8, 24, 8, 24, 8 };
 
+                if (listaNiveles[nivel][niv].ToString() == "F")
+                    CargarAudiosNiveles(8);
+                else
+                    CargarAudiosNiveles(7);
 
                 ArmarEnsayo(indiceCartas, 28, 4);
-                
+                MostrarInformeCriterios(nivel);
+
+                EmpezarAudio();
+
                 break;
 
             case 6: // 76 Perro Naranja - 53 Pelota Amarilla Chica - 77 Perro Naranja chico - 52 Pelota Amarilla
                     // 72 Perro Amarillo - 57 Pelota Naranja Chica -  Perro Naranja chico -  Pelota Amarilla 
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 76, 53, 77, 52, 72, 57 };
 
+                if (listaNiveles[nivel][niv].ToString() == "T")
+                    CargarAudiosNiveles(10);
+                else
+                    CargarAudiosNiveles(11);
 
-                ArmarEnsayo(indiceCartas, 73, 56);                
+                ArmarEnsayo(indiceCartas, 73, 56);
+                MostrarInformeCriterios(nivel);
+
+                EmpezarAudio();
 
                 break;
 
             case 7: // 16 Auto Naranja - 13 Auto Amarillo chico - 36 Flor Naranja - 33 Flor Amarilla chica
                     // 12 Auto Amarillo - 17 Auto Naranja chico - 32 Flor Amarilla - 37 Flor Naranja chica 
                     // 33 Flor Amarilla chica - 37 Flor Naranja chica - 12 Auto Amarillo
-                Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
-                Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
+                //Debug.Log("Cantidad subNiveles: " + listaNiveles[nivel].Count);
+                //Debug.Log("nivel: " + nivel + " - Subnivel: " + niv);
 
                 Destruir();
                 indiceCartas = new List<int> { 16, 13, 36, 33, 12, 17, 32, 37, 33 };
 
+                switch (niv)
+                {
+                    case 0:
+                        CargarAudiosNiveles(11);
+                        break;
+                    case 1:
+                        CargarAudiosNiveles(12);
+                        break;
+                    case 2:
+                        StartCoroutine(NivelSieteInicioSubnivel());
+                        break;
+                    default:
+                        if (listaNiveles[nivel][niv].ToString() == "C")
+                            CargarAudiosNiveles(15);
+                        else
+                            CargarAudiosNiveles(14);
+
+                        break;
+                }
+
                 ArmarEnsayo(indiceCartas, 37, 12);
-                
+                MostrarInformeCriterios(nivel);
+
+                EmpezarAudio();
+
                 break;
 
             case 8: // 76 Perro naranja - 53 Pelota Amarilla chica - 77 Perro Naranja chico - 52 Pelota Amarilla
@@ -392,7 +487,31 @@ public class gameManager : MonoBehaviour
                 Destruir();
                 indiceCartas = new List<int> { 76, 53, 77, 52, 76, 53, 77, 52, 57 };
 
+                switch (niv)
+                {
+                    case 0:
+                        CargarAudiosNiveles(10);
+                        break;
+                    case 1:
+                        CargarAudiosNiveles(16);
+                        break;
+                    case 2:
+                        StartCoroutine(NivelOchoInicioSubnivel());
+                        break;
+                    default:
+                        if (listaNiveles[nivel][niv].ToString() == "T")
+                            CargarAudiosNiveles(19);
+                        else
+                            CargarAudiosNiveles(18);
+
+                        break;
+                }
+
                 ArmarEnsayo(indiceCartas, 73, 56);
+                MostrarInformeCriterios(nivel); 
+
+                EmpezarAudio();
+
                 break;
 
             case 9:
@@ -408,7 +527,7 @@ public class gameManager : MonoBehaviour
         //}
         //else
         //    niv++;
-    }
+    }    
 
     List<string> RandomizarEnsayos (List<string> subNivel)
     {
@@ -440,8 +559,8 @@ public class gameManager : MonoBehaviour
 
         cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
         cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        cartaMuestra1.transform.localScale = new Vector3(0.18f, 0.18f, 0);
+        cartaMuestra3.transform.localScale = new Vector3(0.18f, 0.18f, 0);
         cartaMuestra1.tag = "Muestra";
         cartaMuestra3.tag = "Muestra";
         cartaMuestra1.GetComponent<Collider2D>().enabled = false;
@@ -481,7 +600,7 @@ public class gameManager : MonoBehaviour
             for (float time = 0; time < 1f * 2; time += Time.deltaTime)
             {
                 float progress = Mathf.PingPong(time, 1f) / 1f;
-                canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+                canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(2.5f, 2.5f, 0), progress);
                 yield return null;
             }
             canasta1.transform.localScale = escalaInicialCanasta1;
@@ -490,7 +609,7 @@ public class gameManager : MonoBehaviour
             for (float time = 0; time < 1f * 2; time += Time.deltaTime)
             {
                 float progress = Mathf.PingPong(time, 1f) / 1f;
-                canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+                canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(2.5f, 2.5f, 0), progress);
                 yield return null;
             }
             canasta2.transform.localScale = escalainicialCanasta2;
@@ -511,7 +630,7 @@ public class gameManager : MonoBehaviour
         for (float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(2.5f, 2.5f, 0), progress);
             yield return null;
         }
         canasta2.transform.localScale = escalainicialCanasta2;
@@ -520,10 +639,33 @@ public class gameManager : MonoBehaviour
         for (float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(2.5f, 2.5f, 0), progress);
             yield return null;
         }
         canasta1.transform.localScale = escalaInicialCanasta1;
+
+    }
+    IEnumerator NivelSieteInicioSubnivel()
+    {
+        CargarAudiosNiveles(13);
+        EmpezarAudio();
+        yield return new WaitForSeconds(script.TiempoAudio() + 1f);
+        if (listaNiveles[nivel][niv].ToString() == "C")
+            CargarAudiosNiveles(15);
+        else
+            CargarAudiosNiveles(14);
+
+    }
+
+    IEnumerator NivelOchoInicioSubnivel()
+    {
+        CargarAudiosNiveles(17);
+        EmpezarAudio();
+        yield return new WaitForSeconds(script.TiempoAudio() + 1f);
+        if (listaNiveles[nivel][niv].ToString() == "T")
+            CargarAudiosNiveles(19);
+        else
+            CargarAudiosNiveles(18);
 
     }
 

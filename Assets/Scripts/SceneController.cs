@@ -2,22 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.Android;
 
 public class SceneController : MonoBehaviour
 {
-    public TextMeshProUGUI titulo;
-    public TMP_InputField codigoTest;
-    public void CargarEscena(string nombreEscena)
+
+    public Text titulo;
+    public InputField codigoTest;
+    public void CargarEscena()
     {
-        if (codigoTest.text != "")
-            SceneManager.LoadScene(nombreEscena);
+        if(codigoTest.text != "")
+        {
+            SceneManager.LoadScene(1);
+        }
         else
         {
-            titulo.text = "INGRESE CODIGO DE TEST";
+            titulo.text = "INGRESE CODIGO TEST";
             titulo.color = Color.red;
         }
+        
+    }
+
+    public void Start()
+    {
+        if (Permission.HasUserAuthorizedPermission(Permission.Microphone))
+            Debug.Log("Microphone permission has been granted.");
+
+        if (Permission.HasUserAuthorizedPermission(Permission.Camera))
+            Debug.Log("Camera permission has been granted.");
     }
 }

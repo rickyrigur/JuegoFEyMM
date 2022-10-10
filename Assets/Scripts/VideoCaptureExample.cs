@@ -1,10 +1,13 @@
-//using UnityEngine;
 //using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.Windows.WebCam;
 //using System.Linq;
-//using UnityEngine.VR.WSA.WebCam;
 
 //public class VideoCaptureExample : MonoBehaviour
 //{
+//    static readonly float MaxRecordingTime = 5.0f;
+
 //    VideoCapture m_VideoCapture = null;
 //    float m_stopRecordingTimer = float.MaxValue;
 
@@ -21,16 +24,20 @@
 //            return;
 //        }
 
+//        if (Time.time > m_stopRecordingTimer)
+//        {
+//            m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
+//        }
 //    }
 
 //    void StartVideoCaptureTest()
 //    {
-
 //        Resolution cameraResolution = VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
 //        Debug.Log(cameraResolution);
 
 //        float cameraFramerate = VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
 //        Debug.Log(cameraFramerate);
+
 
 //        VideoCapture.CreateAsync(false, delegate (VideoCapture videoCapture)
 //        {
@@ -47,8 +54,8 @@
 //                cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
 
 //                m_VideoCapture.StartVideoModeAsync(cameraParameters,
-//                                                   VideoCapture.AudioState.ApplicationAndMicAudio,
-//                                                   OnStartedVideoCaptureMode);
+//                    VideoCapture.AudioState.ApplicationAndMicAudio,
+//                    OnStartedVideoCaptureMode);
 //            }
 //            else
 //            {

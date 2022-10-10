@@ -60,9 +60,11 @@
     <Compile Include="Assets\Scripts\Carta.cs" />
     <Compile Include="Assets\Scripts\MoverCarta.cs" />
     <Compile Include="Assets\Scripts\Canasta2.cs" />
+    <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\Canasta1.cs" />
     <Compile Include="Assets\Scripts\Documento.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
+    <Compile Include="Assets\Scripts\VideoCaptureExample.cs" />
     <Compile Include="Assets\Scripts\Ensayos.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
   </ItemGroup>

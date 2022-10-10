@@ -116,8 +116,8 @@ public class gameManager : MonoBehaviour
 
         Pos1 = new Vector3(-0, -13, 0);
 
-        PosCanasta1 = new Vector3(-26, -2f, 0);
-        PosCanasta2 = new Vector3(26, -2f, 0);
+        PosCanasta1 = new Vector3(-8.5f, 0f, 0);
+        PosCanasta2 = new Vector3(8.5f, 0f, 0);
 
         Niveles();// listaNiveles[nivel]);
     }
@@ -208,7 +208,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta1.GetComponent<Canasta1>().EstaEnCanasta1(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
-                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+                    carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
                     TraerSiguienteCarta();
                 }
                     
@@ -216,7 +216,7 @@ public class gameManager : MonoBehaviour
                 {
                     canasta2.GetComponent<Canasta2>().EstaEnCanasta2(carta.GetComponent<Collider2D>());
                     carta.GetComponent<Collider2D>().enabled = false;
-                    carta.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+                    carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
                     TraerSiguienteCarta();
                 }                    
             }
@@ -559,8 +559,8 @@ public class gameManager : MonoBehaviour
 
         cartaMuestra1 = Instantiate(cartas[cartM1], PosCanasta1, transform.rotation);
         cartaMuestra3 = Instantiate(cartas[cartM2], PosCanasta2, transform.rotation);
-        cartaMuestra1.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-        cartaMuestra3.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        cartaMuestra1.transform.localScale = new Vector3(0.18f, 0.18f, 0);
+        cartaMuestra3.transform.localScale = new Vector3(0.18f, 0.18f, 0);
         cartaMuestra1.tag = "Muestra";
         cartaMuestra3.tag = "Muestra";
         cartaMuestra1.GetComponent<Collider2D>().enabled = false;
@@ -600,7 +600,7 @@ public class gameManager : MonoBehaviour
             for (float time = 0; time < 1f * 2; time += Time.deltaTime)
             {
                 float progress = Mathf.PingPong(time, 1f) / 1f;
-                canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+                canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(2.5f, 2.5f, 0), progress);
                 yield return null;
             }
             canasta1.transform.localScale = escalaInicialCanasta1;
@@ -609,7 +609,7 @@ public class gameManager : MonoBehaviour
             for (float time = 0; time < 1f * 2; time += Time.deltaTime)
             {
                 float progress = Mathf.PingPong(time, 1f) / 1f;
-                canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+                canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(2.5f, 2.5f, 0), progress);
                 yield return null;
             }
             canasta2.transform.localScale = escalainicialCanasta2;
@@ -630,7 +630,7 @@ public class gameManager : MonoBehaviour
         for (float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(5.5f, 5.5f, 0), progress);
+            canasta2.transform.localScale = Vector3.Lerp(escalainicialCanasta2, new Vector3(2.5f, 2.5f, 0), progress);
             yield return null;
         }
         canasta2.transform.localScale = escalainicialCanasta2;
@@ -639,7 +639,7 @@ public class gameManager : MonoBehaviour
         for (float time = 0; time < 1f * 2; time += Time.deltaTime)
         {
             float progress = Mathf.PingPong(time, 1f) / 1f;
-            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(5.5f, 5.5f, 0), progress);
+            canasta1.transform.localScale = Vector3.Lerp(escalaInicialCanasta1, new Vector3(2.5f, 2.5f, 0), progress);
             yield return null;
         }
         canasta1.transform.localScale = escalaInicialCanasta1;

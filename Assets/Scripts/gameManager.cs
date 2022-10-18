@@ -681,13 +681,13 @@ public class gameManager : MonoBehaviour
     }
 
     public void FinalizarJuego()
-    {
-        #if UNITY_STANDALONE
-                Application.Quit();
-        #endif
+    {        
         #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         #endif
+        //#if UNITY_STANDALONE
+        Application.Quit();
+        //#endif
     }
 
     private void OnMouseDown()

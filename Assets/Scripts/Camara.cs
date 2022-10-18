@@ -9,23 +9,27 @@ public class Camara : MonoBehaviour
     public string path;
     public RawImage imgDisplay;
     public Text textoCamOnOff;
+    public Text nombreCamara;
 
 
     public void StartStopCamera()
-    {
+    {        
         if(camTexture != null)
         {
             imgDisplay.texture = null;
             camTexture.Stop();
             camTexture = null;
+            imgDisplay.material.mainTexture = null;
 
             textoCamOnOff.text = "Camera ON";
         }
         else
         {
-            WebCamDevice device = WebCamTexture.devices[0];
+            WebCamDevice device = WebCamTexture.devices[1];
+            nombreCamara.text = "Camara: " + device.name;
             camTexture = new WebCamTexture(device.name);
             imgDisplay.texture = camTexture;
+            imgDisplay.material.mainTexture = camTexture;
 
             camTexture.Play();
 
@@ -33,17 +37,4 @@ public class Camara : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        //camTexture = new WebCamTexture();
-        //camTexture.Play();
-        //gameObject.GetComponent<SpriteRenderer>().material.mainTexture = camTexture;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

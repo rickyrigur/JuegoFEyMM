@@ -1742,7 +1742,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132660431}
-  - component: {fileID: 1132660430}
   - component: {fileID: 1132660433}
   - component: {fileID: 1132660432}
   m_Layer: 0
@@ -1752,21 +1751,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1132660430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132660429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d091baddd07b7c41a7aab2db96c7998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: 
-  imgDisplay: {fileID: 204262430}
-  textoCamOnOff: {fileID: 1042915908}
 --- !u!4 &1132660431
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,7 +1923,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1356851343}
   - component: {fileID: 1356851342}
-  - component: {fileID: 1356851344}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -2072,19 +2055,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1356851344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356851341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4cf4653069ffdf4484e71538ca7a165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtDocumento: 
 --- !u!1 &1369190854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,7 +3214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1132660430}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Camara, Assembly-CSharp
         m_MethodName: StartStopCamera
         m_Mode: 1
@@ -3294,6 +3264,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071166509}
   m_CullTransparentMesh: 1
+--- !u!1 &2109925194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2109925197}
+  - component: {fileID: 2109925196}
+  - component: {fileID: 2109925195}
+  m_Layer: 0
+  m_Name: Document
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2109925195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109925194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8699c0adb2b60024e9dc3f979e70db44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a0364287806317e43935c0cc4f1eb195, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109925196}
+        m_TargetAssemblyTypeName: Documento, Assembly-CSharp
+        m_MethodName: AddToDocument
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2109925196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109925194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cf4653069ffdf4484e71538ca7a165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtDocumento: 
+--- !u!4 &2109925197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109925194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142036231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,7 +3420,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1356851344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Documento, Assembly-CSharp
         m_MethodName: LlenarDocumento
         m_Mode: 1

@@ -52,4 +52,9 @@ public class Documento : MonoBehaviour
         File.AppendAllText(txtDocumento, "\n\n");
 
     }
+
+    public void AddToDocument(string data)
+    {
+        Debug.Log(data);
+    }
 }

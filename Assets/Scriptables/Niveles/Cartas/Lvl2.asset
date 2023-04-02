@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ee17989330d9d438b87879aacd5cc4, type: 3}
+  m_Name: Lvl2
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: a26635e9e2e802843a1ecc16eb945990, type: 2}
+  - {fileID: 11400000, guid: dd579b66a1e3b7549835af2884c96e19, type: 2}
+  - {fileID: 11400000, guid: a8f5eb2be8ca15547af96d6dcbdfca3b, type: 2}
+  - {fileID: 11400000, guid: f1d5006ff7556e747964ae1bb069fa9d, type: 2}
+  cardM1: {fileID: 11400000, guid: a8f5eb2be8ca15547af96d6dcbdfca3b, type: 2}
+  cardM2: {fileID: 11400000, guid: f1d5006ff7556e747964ae1bb069fa9d, type: 2}
+  level: 2
+  fixedTests:
+  - {fileID: 11400000, guid: 93bf6e6b19a6aff47ac81c01bf4afeab, type: 2}
+  - {fileID: 11400000, guid: b22aa425bc2a5d943b068ade620f9d07, type: 2}
+  randomTest: []

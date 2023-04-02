@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ee17989330d9d438b87879aacd5cc4, type: 3}
+  m_Name: Lvl8
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 6dd32b420f1a825488f5e55e443aefbe, type: 2}
+  - {fileID: 11400000, guid: 3ab448f0cad334a44a5788b933c2e05e, type: 2}
+  - {fileID: 11400000, guid: 88c15541abab9934a845d69b41e0db07, type: 2}
+  - {fileID: 11400000, guid: 02e29ed360124da48980c03c6db1d531, type: 2}
+  - {fileID: 11400000, guid: 6dd32b420f1a825488f5e55e443aefbe, type: 2}
+  - {fileID: 11400000, guid: 3ab448f0cad334a44a5788b933c2e05e, type: 2}
+  - {fileID: 11400000, guid: 88c15541abab9934a845d69b41e0db07, type: 2}
+  - {fileID: 11400000, guid: 02e29ed360124da48980c03c6db1d531, type: 2}
+  - {fileID: 11400000, guid: 80c87d087ff3a064e80d761f4914f7d7, type: 2}
+  cardM1: {fileID: 11400000, guid: 4f1b5b7f1c683c5489b6f200d0bf1167, type: 2}
+  cardM2: {fileID: 11400000, guid: c493850b0eff0f14da804119f1c11482, type: 2}
+  level: 8
+  fixedTests:
+  - {fileID: 11400000, guid: 430f8fcbe51419c48a68abd5ad687b48, type: 2}
+  - {fileID: 11400000, guid: 369f07cf54ddeeb48b9dec420312aace, type: 2}
+  randomTest:
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: 2ca680d514cdd2a449263eaa539881a9, type: 2}
+  - {fileID: 11400000, guid: f190b4ec243f5c24585d3a06179ce26d, type: 2}
+  - {fileID: 11400000, guid: f190b4ec243f5c24585d3a06179ce26d, type: 2}
+  - {fileID: 11400000, guid: f190b4ec243f5c24585d3a06179ce26d, type: 2}

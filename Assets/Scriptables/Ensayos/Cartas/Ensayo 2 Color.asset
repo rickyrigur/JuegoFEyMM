@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1779289d0e949347b413078026c36f7, type: 3}
+  m_Name: Ensayo 2 Color
+  m_EditorClassIdentifier: 
+  criteria: 1
+  audioClip: {fileID: 11400000, guid: 0917ad106c454af459589b81f90d0d70, type: 2}
+  replayIfWrong: 0
+  eventOnEnd: {fileID: 11400000, guid: 200e4d12d494d6a488f1b4ac974771b3, type: 2}

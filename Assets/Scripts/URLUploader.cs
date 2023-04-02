@@ -6,13 +6,19 @@ using UnityEngine.Events;
 
 public class URLUploader : MonoBehaviour
 {
-    private string _url = "http://localhost:8000/videoUploader.php"; //Modifiquenlo por la ruta donde tengan el php/python para
-                                                                  //subir los archivos
+    public string _url = "http://194.195.86.65/Proyecto/videoUploader.php";
     
-	public UnityEvent onVideoUploadSuccess;
-	public UnityEvent onVideoUploadFail;
-	
-	public void UploadFile(string filePath)
+	public UnityEvent<string> onVideoUploadSuccess;
+	public UnityEvent<string> onVideoUploadFail;
+
+    private void Start()
+    {
+        string path = "C:/Users/JuanP/Desktop/Prueba.txt";
+        path = path.Replace("/", @"\");
+        UploadFile(path);
+    }
+
+    public void UploadFile(string filePath)
     {
         StartCoroutine(Upload(filePath));
     }
@@ -23,20 +29,18 @@ public class URLUploader : MonoBehaviour
         UnityWebRequest file = UnityWebRequest.Get("file://" + filePath);
         yield return file.SendWebRequest();
         WWWForm form = new WWWForm();
-        form.AddBinaryData("dataFile", file.downloadHandler.data, Path.GetFileName(filePath)); //el file name que en este
-                                                    //caso es dataFile tiene que llamarse de la misma forma en el php/python
-
+        form.AddBinaryData("dataFile", file.downloadHandler.data, Path.GetFileName(filePath));
         var upload = UnityWebRequest.Post(_url, form);
         yield return upload.SendWebRequest();
 
         if (upload.result != UnityWebRequest.Result.Success)
         {
-            onVideoUploadFail?.Invoke();
+            onVideoUploadFail?.Invoke("UPLOAD FAILED: " + upload.error);
             Debug.Log("Upload Failed: " + upload.error);
         }
         else
         {
-            onVideoUploadSuccess?.Invoke();
+            onVideoUploadSuccess?.Invoke("UPLOAD SUCCESS");
             Debug.Log("Upload Success");
         }
         upload.Dispose();

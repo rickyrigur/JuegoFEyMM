@@ -1,60 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
 
 public class Documento : MonoBehaviour
 {
-    public string txtDocumento;
-    private gameManager script;
+    private string _documentPath;
+    public string fileName = "";
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        script = GetComponent<gameManager>();
-
-        //Directory.CreateDirectory(Application.streamingAssetsPath + "/Documento_Logs/");
-        //txtDocumento = Application.streamingAssetsPath + "/Documento_Logs/" + "Resultados" + ".txt";
-
         Directory.CreateDirectory(Application.persistentDataPath + "/Documento_Logs/");
-
-        txtDocumento = Application.persistentDataPath + "/Documento_Logs/" + "Resultados" + ".txt";
-
-        CrearDocumento();
+        _documentPath = Application.persistentDataPath + "/Documento_Logs/" + "Resultados " + fileName + ".txt";
+        CreateDocument();
     }
-
-    public void CrearDocumento()
+    private void CreateDocument()
     {
-        //Crea el .txt en el directorio en la función Start
-        //string txtDocumento = Application.streamingAssetsPath + "/Documento_Logs/" + "Resultados" + ".txt";
-
-        if (!File.Exists(txtDocumento))
+        if (!File.Exists(_documentPath))
         {
-            File.WriteAllText(txtDocumento, "Resultados ensayo \n \n");
-            File.AppendAllText(txtDocumento, "Sujeto: " + "\n\n");
+            File.Create(_documentPath);
         }        
     }
 
-    public void LlenarDocumento()
+    private void Start()
     {
-        if (script.niv == 0)
-        {
-            File.AppendAllText(txtDocumento, "-------------------" + script.nivel + "\n");
-            File.AppendAllText(txtDocumento, "Ensayo nº " + script.nivel + "\n\n");
-        }            
-
-        File.AppendAllText(txtDocumento, "Sub ensayo nº " + script.niv + "\n");
-        File.AppendAllText(txtDocumento, "Criterio: " + script.listaNiveles[script.nivel][script.niv].ToString() + "\n");
-        File.AppendAllText(txtDocumento, "Correctos: " + script.correctos + "\n");
-        File.AppendAllText(txtDocumento, "Incorrectos: " + script.incorrectos + "\n");
-
-        File.AppendAllText(txtDocumento, "\n\n");
-
+        File.WriteAllText(_documentPath, "Resultados ensayo \n \n");
     }
 
     public void AddToDocument(string data)
     {
+        File.AppendAllText(_documentPath ,data + "\n");
         Debug.Log(data);
+    }
+
+    public void AddToDocumentWithTimestamp(string data)
+    {
+        data = data + " en el minuto " + Time.realtimeSinceStartup;
+        AddToDocument(data + "\n");
+    }
+
+    public void SendDocument()
+    {
+
     }
 }

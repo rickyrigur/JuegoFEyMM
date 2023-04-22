@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ee17989330d9d438b87879aacd5cc4, type: 3}
+  m_Name: Lvl7
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 9703f4a31c258ed4092112429e60f285, type: 2}
+  - {fileID: 11400000, guid: 3280c932384f8bb47a2f0cfe7aebaed9, type: 2}
+  - {fileID: 11400000, guid: bf977e25b7d99c240a0de42bad543c38, type: 2}
+  - {fileID: 11400000, guid: 84b5358dd5dcf9b40b6b1e7a77505494, type: 2}
+  - {fileID: 11400000, guid: 5be7da11216ba76488df22fdbcf798a7, type: 2}
+  - {fileID: 11400000, guid: dba25a09abacd2b49816e05b7ba79686, type: 2}
+  - {fileID: 11400000, guid: 196c3a856ab93464bb024459275faebf, type: 2}
+  - {fileID: 11400000, guid: 0be7102f5a22ee0438f38c2589267f2f, type: 2}
+  - {fileID: 11400000, guid: 84b5358dd5dcf9b40b6b1e7a77505494, type: 2}
+  cardM1: {fileID: 11400000, guid: 0be7102f5a22ee0438f38c2589267f2f, type: 2}
+  cardM2: {fileID: 11400000, guid: 5be7da11216ba76488df22fdbcf798a7, type: 2}
+  level: 7
+  fixedTests:
+  - {fileID: 11400000, guid: 9e2803e3b08361c4d9591db37bc0c592, type: 2}
+  - {fileID: 11400000, guid: 1fdb0c0e6a8bf6b44b627f833cc3ae30, type: 2}
+  randomTest:
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: b8d9919e6a0d0824e972012c6e263ec3, type: 2}
+  - {fileID: 11400000, guid: 71fcd83162888a940b03c461eab527ca, type: 2}
+  - {fileID: 11400000, guid: 71fcd83162888a940b03c461eab527ca, type: 2}
+  - {fileID: 11400000, guid: 71fcd83162888a940b03c461eab527ca, type: 2}

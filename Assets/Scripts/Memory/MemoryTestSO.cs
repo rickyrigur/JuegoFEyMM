@@ -14,6 +14,12 @@ public class MemoryTestSO : ScriptableObject
     public Positions position;
     [Tooltip("Delay en segundos antes de empezar a jugar")]
     public int delay = 1;
+    [Tooltip("Audio de introduccion al test")]
+    public AudioClipSO introAudio;
+    [Tooltip("Audio al arrancar el test")]
+    public AudioClipSO audio;
+    [Tooltip("Audio al arrancar el test")]
+    public float timeToMemorize;
 
     [HideInInspector]
     public int level;

@@ -13,6 +13,7 @@ public class AudioClipSO : ScriptableObject
 
     public AudioClip Clip { get { return _clip; } }
     public float Volume { get { return _volume; } }
+    public float Lenght { get { return _clip.length; } }
 
     public void Play() => FindObjectOfType<AudioManager>().PlayAudio(this);
 }

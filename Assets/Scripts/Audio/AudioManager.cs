@@ -1,14 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public AudioClip[] audiosEnsayo;
-    private AudioSource _audioEnsayo;
-
-    void Start()
-    {
-        _audioEnsayo = GetComponent<AudioSource>();
-    }
+    private AudioSource _audioEnsayo => GetComponent<AudioSource>();
 
     public void CargarAudio(int audio)
     {

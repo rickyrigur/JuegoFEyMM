@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Nuevo nivel de memoria", menuName = "Scriptables/Niveles/Nuevo nivel de memoria", order = 81)]
+[CreateAssetMenu(fileName = "MemLevel_Nuevo nivel de memoria", menuName = "Scriptables/Niveles/Nuevo nivel de memoria", order = 81)]
 
 public class MemoryLevelSO : ScriptableObject
 {
@@ -10,7 +10,7 @@ public class MemoryLevelSO : ScriptableObject
     public List<MemoryTestSO> tests;
     public List<MemoryObjects> objects;
 
-    public void OnEnable()
+    public void BuildLevel()
     {
         foreach (MemoryTestSO currentTest in tests)
         {

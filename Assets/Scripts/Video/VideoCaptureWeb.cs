@@ -1,34 +1,22 @@
 using UnityEngine;
-using UnityEngine.Windows.WebCam;
 using System.Linq;
 using System;
 using UnityEngine.Events;
+#if UNITY_EDITOR
+using UnityEngine.Windows.WebCam;
+#endif
 
-public class VideoCaptureExample : MonoBehaviour
+public class VideoCaptureWeb : BaseVideoCapture
 {
-    public UnityEvent onStartRecording;
-	public UnityEvent<string> onEndRecording;
-    
+#if UNITY_EDITOR
     private VideoCapture m_VideoCapture = null;
-    private string _path;
-	
-    void Start()
-    {
-        StartRecording();
-    }
+#endif
 
-    public void StartRecording()
+    protected override void StartVideoCapture()
     {
-        StartVideoCapture();
-    }
 
-    public void StopRecording()
-    {
-        m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
-    }
+#if UNITY_EDITOR
 
-    void StartVideoCapture()
-    {
         Resolution cameraResolution = VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         float cameraFramerate = VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
 
@@ -53,30 +41,42 @@ public class VideoCaptureExample : MonoBehaviour
                 Debug.LogError("Failed to create VideoCapture Instance!");
             }
         });
+#endif
+    }
+
+    protected override void StopVideoCapture()
+    {
+#if UNITY_EDITOR
+        m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
+#endif
     }
 
     void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
     {
-        string timeStamp = DateTime.Now.ToString().Replace(":", "").Replace(" ", "").Replace("/", "");
-        string filename = string.Format("TestVideo_{0}.mp4", timeStamp);
-        string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
-        filepath = filepath.Replace("/", @"\");
-        _path = filepath;
-        m_VideoCapture.StartRecordingAsync(filepath, OnStartedRecordingVideo);
+#if UNITY_EDITOR
+        SetPath();
+        m_VideoCapture.StartRecordingAsync(_path, OnStartedRecordingVideo);
+#endif
     }
 
     void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
     {
+#if UNITY_EDITOR
         onStartRecording?.Invoke();
+#endif
     }
 
     void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
     {
+#if UNITY_EDITOR
         m_VideoCapture.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+#endif
     }
 
     void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
     {
-		onEndRecording?.Invoke(_path);
+#if UNITY_EDITOR
+        onEndRecording?.Invoke(_path);
+#endif
     }
 }

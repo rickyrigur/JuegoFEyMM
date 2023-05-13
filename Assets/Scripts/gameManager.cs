@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class gameManager : MonoBehaviour
     public Basket canastaL;
     public Basket canastaR;
 
-    public Transform carta;
     public GameObject opciones;
     
     public UnityEvent OnGameLoad;
@@ -30,7 +30,10 @@ public class gameManager : MonoBehaviour
     public UnityEvent OnLevel7IntroEnds;
     public UnityEvent OnLevel8IntroEnds;
 
+    public AudioClipSO EndGameAudio;
+
     private AudioManager audioManager;
+    private Transform carta;
     private bool _incorrecto;
 
     void Start()
@@ -177,11 +180,13 @@ public class gameManager : MonoBehaviour
 
     public void FinalizarJuego()
     {
-        #if UNITY_STANDALONE
-                Application.Quit();
-        #endif
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #endif
-    }  
+        StartCoroutine(EndGame());
+    }
+    
+    IEnumerator EndGame()
+    {
+        EndGameAudio.Play();
+        yield return new WaitForSeconds(EndGameAudio.Lenght);
+        SceneManager.LoadScene(0);
+    }
 }

@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Memory\Toy.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardSO.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeLevelSO.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
@@ -64,37 +65,52 @@
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventListener_I.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventSO_I.cs" />
-    <Compile Include="Assets\Scripts\Memory\IBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\IBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryBox.cs" />
     <Compile Include="Assets\Scripts\References\TestCriteria.cs" />
-    <Compile Include="Assets\Scripts\Memory\LBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\LBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Void\GameEventSO.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\BoxCreatorFactory.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryTestSO.cs" />
     <Compile Include="Assets\Scripts\URLUploader.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\TestLogger.cs" />
     <Compile Include="Assets\Scripts\ILevelBuilder.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\DobleDiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\String\GameEventSO_S.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\DobleHorizontalBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Cross.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Bear.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
+    <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Basket.cs" />
+    <Compile Include="Assets\Scripts\Memory\MemoryBoxAnimator.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardsLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\Documento.cs" />
-    <Compile Include="Assets\Scripts\Memory\BaseBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\BaseBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\TutorialController.cs" />
+    <Compile Include="Assets\Scripts\Memory\IAnimatedObject.cs" />
+    <Compile Include="Assets\Scripts\Memory\Validator\IValidator.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\ToyFactory.cs" />
     <Compile Include="Assets\Scripts\VideoCaptureExample.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Void\GameEventListener.cs" />
     <Compile Include="Assets\Scripts\References\Positions.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelSO.cs" />
+    <Compile Include="Assets\Scripts\Memory\Distractor.cs" />
+    <Compile Include="Assets\Scripts\Memory\Validator\EasyValidator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Validator\HardValidator.cs" />
     <Compile Include="Assets\Scripts\References\Cards.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\References\MemoryObjects.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeTestSO.cs" />
-    <Compile Include="Assets\Scripts\Memory\HorizontalBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\GameVars.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\HorizontalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\String\GameEventListener_S.cs" />
     <Compile Include="Assets\Scripts\Events\GameEventSOBase.cs" />
-    <Compile Include="Assets\Scripts\Memory\DiagonalBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Memory\Creators\DiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\GameEventListenerBase.cs" />
+    <Compile Include="Assets\Scripts\Memory\MemoryGameController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

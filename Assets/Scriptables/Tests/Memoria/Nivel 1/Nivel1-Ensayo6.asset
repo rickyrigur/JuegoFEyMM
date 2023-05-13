@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9202d55c7e4ba73419de716d46ba9155, type: 3}
+  m_Name: Nivel1-Ensayo6
+  m_EditorClassIdentifier: 
+  testNumber: 7
+  boxesAmount: 3
+  objectAmount: 1
+  position: 2
+  delay: 5
+  introAudio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 4e58713091bdda4499f3610523c9e4ea, type: 2}
+  timeToMemorize: 1.5
+  level: 0
+  objects: 

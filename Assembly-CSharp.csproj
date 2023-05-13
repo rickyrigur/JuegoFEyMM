@@ -58,8 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Memory\Toy.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardSO.cs" />
+    <Compile Include="Assets\Scripts\Video\IVideoCapture.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeLevelSO.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Video\BaseVideoCapture.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioClipSO.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Carta.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventListener_I.cs" />
@@ -87,13 +89,13 @@
     <Compile Include="Assets\Scripts\DimensionalChange\CardsLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\Documento.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\BaseBoxCreator.cs" />
+    <Compile Include="Assets\Scripts\Video\VideoCaptureMobile.cs" />
     <Compile Include="Assets\Scripts\Memory\TutorialController.cs" />
     <Compile Include="Assets\Scripts\Memory\IAnimatedObject.cs" />
     <Compile Include="Assets\Scripts\Memory\Validator\IValidator.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\ToyFactory.cs" />
-    <Compile Include="Assets\Scripts\Video\VideoCaptureWeb.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Void\GameEventListener.cs" />
     <Compile Include="Assets\Scripts\References\Positions.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelSO.cs" />
@@ -111,9 +113,6 @@
     <Compile Include="Assets\Scripts\Events\GameEventSOBase.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\DiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\GameEventListenerBase.cs" />
-    <Compile Include="Assets\Scripts\Video\IVideoCapture.cs" />
-    <Compile Include="Assets\Scripts\Video\BaseVideoCapture.cs" />
-    <Compile Include="Assets\Scripts\Video\VideoCaptureMobile.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

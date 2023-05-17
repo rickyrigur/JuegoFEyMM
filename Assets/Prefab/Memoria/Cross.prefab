@@ -88,5 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e471f7728921fd74a8d34a1fcdde229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 0.5
-  stayDuration: 1
+  animationTime: 0.2
+  stayDuration: 0.5

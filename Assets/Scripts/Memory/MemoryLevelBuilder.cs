@@ -24,7 +24,12 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
     [SerializeField]
     private UnityEvent OnBuildTest;
     [SerializeField]
+    private UnityEvent OnReplayTest;
+    [SerializeField]
     private UnityEvent OnNoMoreLevels;
+
+    [SerializeField]
+    private MemoryLogger _logger;
 
     private BoxCreatorFactory _boxCreatorFactory;
     private ToyFactory _toyFactory;
@@ -57,6 +62,7 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
 
     public void BuildLevel(MemoryLevelSO level)
     {
+        _logger.LoadLevel(level);
         _currentLevel = level;
         _currentLevel.BuildLevel();
         EnqueueTests(level);
@@ -75,6 +81,8 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
     public void BuildTest(MemoryTestSO test, bool replay = false)
     {
         _currentTest = test;
+        _logger.LoadTest(test);
+        GameVars.DistractorShowed = false;
         List<MemoryObjects> objectsToUse = new List<MemoryObjects>();
         List<MemoryObjects> tempList = new List<MemoryObjects>();
         tempList.AddRange(test.objects);
@@ -125,6 +133,7 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
 
     public void OnNextTest()
     {
+        _logger.LogTest();
         if (_enqueuedTests.Count <= 0)
         {
             OnNextLevel();
@@ -150,6 +159,14 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
     public void ReplayTest()
     {
         _boxCreatorFactory.CleanBoxes();
+        GameVars.DistractorShowed = false;
+        OnReplayTest?.Invoke();
         OnBuildTest?.Invoke();
+    }
+
+    public void DestroyTest()
+    {
+        _boxCreatorFactory.DestroyBoxes();
+        _toyFactory.DestroyAll();
     }
 }

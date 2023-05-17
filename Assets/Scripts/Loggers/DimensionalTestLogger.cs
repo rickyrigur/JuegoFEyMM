@@ -1,40 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TestLogger : MonoBehaviour
+public class DimensionalTestLogger : TestLogger<DimensionalChangeTestSO, DimensionalChangeLevelSO>
 {
-    public GameEventSO_S logEvent;
-
-    private DimensionalChangeLevelSO _currentLevel;
-    private DimensionalChangeTestSO _currentTest;
-
     private int _correct;
     private int _incorrect;
     private int _testNumber;
-    private float _time;
 
-    private void Update()
+    public override void LoadTest(DimensionalChangeTestSO test)
     {
-        _time += Time.deltaTime;
-    }
-
-    public void LoadTest(DimensionalChangeTestSO test)
-    {
-        _currentTest = test;
-        _testNumber ++;
+        _testNumber++;
         logEvent.Happen("\n---- Nuevo Test ----\n");
-        logEvent.Happen("Test Número: " + _testNumber + " - " + _currentTest.name + "\n");
-        logEvent.Happen("Criterio: " + _currentTest.criteria + "\n");
+        logEvent.Happen("Test Número: " + _testNumber + " - " + test.name + "\n");
+        logEvent.Happen("Criterio: " + test.criteria + "\n");
     }
 
-    public void LoadLevel(DimensionalChangeLevelSO level)
+    public override void LoadLevel(DimensionalChangeLevelSO level)
     {
         _testNumber = 0;
-        _currentLevel = level;
         logEvent.Happen("\n-------------------------------------------\n");
-        logEvent.Happen("Nivel: " + _currentLevel.level + "\n");
+        logEvent.Happen("Nivel: " + level.level + "\n");
     }
 
-    public void LogTest()
+    public override void LogTest()
     {
         if (_correct != 0 || _incorrect != 0)
         {
@@ -46,7 +35,7 @@ public class TestLogger : MonoBehaviour
         ResetLogger();
     }
 
-    private void ResetLogger()
+    public override void ResetLogger()
     {
         _correct = 0;
         _incorrect = 0;
@@ -62,5 +51,4 @@ public class TestLogger : MonoBehaviour
     {
         _incorrect++;
     }
-
 }

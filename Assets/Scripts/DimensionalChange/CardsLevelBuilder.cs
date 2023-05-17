@@ -11,7 +11,7 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
 
     public List<DimensionalChangeLevelSO> levels;
 
-    public TestLogger logger;
+    public DimensionalTestLogger logger;
 
     public UnityEvent OnNoMoreLevels;
     public UnityEvent OnBuildLevel;

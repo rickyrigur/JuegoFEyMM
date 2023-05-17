@@ -106,4 +106,10 @@ public class ToyFactory
         }
         _crosses.Clear();
     }
+
+    public void DestroyAll()
+    {
+        ClearToys();
+        ClearCrosses();
+    }
 }

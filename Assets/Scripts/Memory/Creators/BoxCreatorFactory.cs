@@ -50,4 +50,10 @@ public class BoxCreatorFactory
     {
         _currentCreator.CleanBoxes();
     }
+
+    public void DestroyBoxes()
+    {
+        if (_currentCreator != null)
+            _currentCreator.DestroyBoxes();
+    }
 }

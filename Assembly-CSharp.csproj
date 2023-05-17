@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventListener_I.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventSO_I.cs" />
+    <Compile Include="Assets\Scripts\Loggers\MemoryLogger.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\IBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryBox.cs" />
     <Compile Include="Assets\Scripts\References\TestCriteria.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="Assets\Scripts\Memory\Creators\BoxCreatorFactory.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryTestSO.cs" />
     <Compile Include="Assets\Scripts\URLUploader.cs" />
-    <Compile Include="Assets\Scripts\DimensionalChange\TestLogger.cs" />
+    <Compile Include="Assets\Scripts\Loggers\TestLogger.cs" />
     <Compile Include="Assets\Scripts\ILevelBuilder.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\DobleDiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\String\GameEventSO_S.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\Scripts\References\Cards.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\References\MemoryObjects.cs" />
+    <Compile Include="Assets\Scripts\Loggers\DimensionalTestLogger.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeTestSO.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryGameController.cs" />
     <Compile Include="Assets\Scripts\Memory\GameVars.cs" />

@@ -36,7 +36,7 @@ public class TutorialController : MonoBehaviour
         else
         {
             wrongAmount++;
-            if (wrongAmount <= 3)
+            if (wrongAmount < 3)
             {
                 StartCoroutine(PlayAudiosAndValidate(_failAudio, _onFail));
             }

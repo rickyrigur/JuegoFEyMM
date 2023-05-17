@@ -19,7 +19,12 @@ public class EasyValidator : IValidator
         if (box.hasElement && _objects.Contains(box.objectHided))
         {
             result = true;
+            GameVars.CorrectAmount += 1;
             _objects.Remove(box.objectHided);
+        }
+        else
+        {
+            GameVars.WrongAmount += 1;
         }
 
         if (GameVars.PlayingTutorial)

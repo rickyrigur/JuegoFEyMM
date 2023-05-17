@@ -19,10 +19,10 @@ public class Distractor : MonoBehaviour
         _image.enabled = true;
         OnDistractorAnimationStarts?.Invoke();
         StartCoroutine(AnimateDistractor(Vector3.one));
-        StartCoroutine(AnimateDistractor(Vector3.zero, duration));
+        StartCoroutine(AnimateDistractor(Vector3.zero, duration, true));
     }
 
-    IEnumerator AnimateDistractor(Vector3 finalScale, float delay = 0)
+    IEnumerator AnimateDistractor(Vector3 finalScale, float delay = 0, bool markAsShowed = false)
     {
         yield return new WaitForSeconds(delay);
         Vector3 initialScale = transform.localScale;
@@ -34,6 +34,9 @@ public class Distractor : MonoBehaviour
             yield return null;
         }
         transform.localScale = finalScale;
+
+        if (markAsShowed)
+            GameVars.DistractorShowed = true;
 
         if (finalScale == Vector3.zero)
         {

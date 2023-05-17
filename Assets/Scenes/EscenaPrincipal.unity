@@ -1308,9 +1308,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015598618}
-  - component: {fileID: 1015598617}
   - component: {fileID: 1015598616}
   - component: {fileID: 1015598615}
+  - component: {fileID: 1015598617}
   m_Layer: 0
   m_Name: TestLogger
   m_TagString: Untagged
@@ -1335,7 +1335,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1015598617}
-        m_TargetAssemblyTypeName: TestLogger, Assembly-CSharp
+        m_TargetAssemblyTypeName: DimensionalTestLogger, Assembly-CSharp
         m_MethodName: Incorrect
         m_Mode: 1
         m_Arguments:
@@ -1363,7 +1363,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1015598617}
-        m_TargetAssemblyTypeName: TestLogger, Assembly-CSharp
+        m_TargetAssemblyTypeName: DimensionalTestLogger, Assembly-CSharp
         m_MethodName: Correct
         m_Mode: 1
         m_Arguments:
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015598614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b621d754b62194248bde8b05d15d58e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 26d9607cd58dd3246808ed66ec8c1e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   logEvent: {fileID: 11400000, guid: a0364287806317e43935c0cc4f1eb195, type: 2}
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37afb3e2fe4cd104ab51af440eafad85, type: 2}
   - {fileID: 11400000, guid: a733d68f61715fe4386a3b2fce7c4631, type: 2}
   - {fileID: 11400000, guid: e27b90003dba5144fb3727f98669401a, type: 2}
-  logger: {fileID: 1015598617}
+  logger: {fileID: 0}
   OnNoMoreLevels:
     m_PersistentCalls:
       m_Calls:

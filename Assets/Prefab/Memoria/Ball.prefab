@@ -88,5 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1dfa88a4e86d84dbf890e480ee6f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 0.5
+  animationTime: 0.35
   type: 4
+  _originalScale: {x: 0, y: 0, z: 0}
+  _originalPosition: {x: 0, y: 0, z: 0}
+  _middlePosition: {x: 0, y: 0, z: 0}

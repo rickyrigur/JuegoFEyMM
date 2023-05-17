@@ -13,7 +13,6 @@ public class MemoryBox : MonoBehaviour
     public IValidator validator;
     public ToyFactory toyFactory;
 
-    [SerializeField]
     private bool interactable;
     private Button _button => GetComponent<Button>();
 
@@ -55,7 +54,10 @@ public class MemoryBox : MonoBehaviour
         OnSelect?.Invoke();
         _animatedObject.Animate(() => {
             bool result = validator.Validate(this, OnNoMoreObjects);
-            OnAnimationEnds?.Invoke(result);
+            if (GameVars.DistractorShowed)
+            {
+                OnAnimationEnds?.Invoke(result);
+            }
         });
     }
      

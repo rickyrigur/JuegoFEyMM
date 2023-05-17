@@ -1036,7 +1036,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Este juego fue pensado por Natalia Mancini como parte de su Tesis de doctorado
     en Psicolog\xEDa valiendose de estudios de tiempo y reacci\xF3n en juegos de
-    memoria. Programado por Hernan Rigourd y Matias Gimenez"
+    memoria. Programado por Hernan Rigourd, Matias Gimenez y Juan Pablo Maggi"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

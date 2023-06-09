@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,6 +12,7 @@ public class SceneController : MonoBehaviour
     {
         Permission.RequestUserPermission(Permission.Microphone);
         Permission.RequestUserPermission(Permission.Camera);
+
     }
 
     public void LoadScene(int sceneNumber)

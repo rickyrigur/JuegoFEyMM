@@ -284,7 +284,7 @@ namespace FFmpegUnityBind2.Desktop
             FileUnpacker.UnpackFiles(relativePaths, paths);
 #else
             Debug.Log($"IL2CPP - {false}");
-            FileUnpacker.UnpackFile(ExecutableRelativePath, ExecutablePath);
+            //FileUnpacker.UnpackFile(ExecutableRelativePath, ExecutablePath);
 #endif
         }
 

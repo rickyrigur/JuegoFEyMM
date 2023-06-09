@@ -45,6 +45,11 @@ namespace FFmpegUnityBind2.Demo
 
             aspectRatioFitter.aspectRatio = (float)webCamTexture.width / webCamTexture.height;
 
+            float rotation = (360 - webCamTexture.videoRotationAngle);
+            Quaternion quatRotation = new Quaternion();
+            quatRotation.eulerAngles = new Vector3(0, 0, rotation);
+            image.transform.rotation = quatRotation;
+            image.transform.localScale = new Vector3(image.transform.localScale.x, image.transform.localScale.y * -1, image.transform.localScale.z);
             Show(true);
         }
 

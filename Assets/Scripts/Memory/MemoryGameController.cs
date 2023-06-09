@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MemoryGameController : MonoBehaviour
 {
+
+    public bool exitAudioPlayed;
+    public bool videoProcessed;
     public AudioClipSO EndGameAudio;
     public void FinalizarJuego()
     {
@@ -15,6 +18,20 @@ public class MemoryGameController : MonoBehaviour
     {
         EndGameAudio.Play();
         yield return new WaitForSeconds(EndGameAudio.Lenght);
-        SceneManager.LoadScene(0);
+        exitAudioPlayed = true;
+        CheckIfCanExit();
+    }
+
+    public void VideoProcessed()
+    {
+        videoProcessed = true;
+        CheckIfCanExit();
+    }
+
+
+    public void CheckIfCanExit()
+    {
+        if (exitAudioPlayed && videoProcessed)
+            SceneManager.LoadScene(0);
     }
 }

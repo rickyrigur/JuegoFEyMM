@@ -8,11 +8,13 @@ public abstract class BaseVideoCapture : MonoBehaviour, IVideoCapture
 {
     public UnityEvent onStartRecording;
     public UnityEvent<string> onEndRecording;
+    public UnityEvent<string> OnProccessEnd;
 
     protected string _path;
 
     public void StartRecording()
     {
+        SetPath();
         StartVideoCapture();
     }
 
@@ -31,6 +33,11 @@ public abstract class BaseVideoCapture : MonoBehaviour, IVideoCapture
         string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
         filepath = filepath.Replace("/", @"\");
         _path = filepath;
+    }
+
+    private void OnDestroy()
+    {
+        StopRecording();
     }
 
 }

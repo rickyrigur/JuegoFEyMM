@@ -118,6 +118,12 @@ namespace FFmpegUnityBind2.Components
             StartREC(outputVideoPath, handlers);
         }
 
+        public void StartREC(RecAudioSource audioSource, string outputVideoPath, params IFFmpegCallbacksHandler[] handlers)
+        {
+            this.audioSource = audioSource;
+            StartREC(outputVideoPath, handlers);
+        }
+
         public void StartREC(RecAudioSource audioSource, params IFFmpegCallbacksHandler[] handlers)
         {
             this.audioSource = audioSource;

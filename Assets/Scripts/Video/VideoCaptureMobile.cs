@@ -1,7 +1,8 @@
 using UnityEngine;
-using UnityEngine.Events;
 using FFmpegUnityBind2.Components;
 using FFmpegUnityBind2.Demo;
+using FFmpegUnityBind2;
+using System.IO;
 
 public class VideoCaptureMobile : BaseVideoCapture
 {
@@ -9,22 +10,30 @@ public class VideoCaptureMobile : BaseVideoCapture
     private FFmpegREC _recordingCamera;
     [SerializeField]
     private CameraView _cameraView;
-    [SerializeField]
-    private TextureView _textureView;
     
     protected override void StartVideoCapture()
     {
-        _recordingCamera.gameObject.SetActive(true);
-        _cameraView.Open();
-        _textureView.Open(_cameraView.Texture);
-        _recordingCamera.StartREC(RecAudioSource.Mic);
+        _path = Path.Combine(Application.temporaryCachePath, "REC.mp4");
+        IFFmpegCallbacksHandler callbackHandler = new VideoCallbackHandler(OnProccessEnd, _path);
+
+        if (_cameraView != null)
+            _cameraView.Open();
+
+        if (_recordingCamera != null)
+        {
+            _recordingCamera.gameObject.SetActive(true);
+            _recordingCamera.StartREC(RecAudioSource.Mic, callbackHandler);
+        }
     }
 
     protected override void StopVideoCapture()
     {
-        _recordingCamera.gameObject.SetActive(false);
-        _recordingCamera.StopREC();
-        _cameraView.Close();
-        _textureView.Close();
+        if (_recordingCamera != null)
+        {
+            _recordingCamera.StopREC();
+        }
+
+        if (_cameraView != null)
+            _cameraView.Close();
     }
 }

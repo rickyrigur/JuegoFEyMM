@@ -58,242 +58,118 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\ImagesToVideo.cs" />
     <Compile Include="Assets\Scripts\Memory\Toy.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\Exceptions\StreamUnsupportedException.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\PendingBuffer.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Frame.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseYouTubeStreamView.cs" />
     <Compile Include="Assets\Scripts\Video\IVideoCapture.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesView.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseCompressView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Checksum\CrcUtilities.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseAppendFullView.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\Logic\FileBrowser.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeLevelSO.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterEngine.cs" />
     <Compile Include="Assets\Scripts\Video\BaseVideoCapture.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Demo\GigaFileBrowserDemo.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Platforms\Desktop\FFmpegDesktop.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Checksum\Adler32.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioClipSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterHuffman.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\InflaterDynHeader.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\View\ToggleButton.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\IL2CPP_Process.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Carta.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\FFmpegProcessView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\EventDispatcher\Event.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventListener_I.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipOutputStream.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\PathUtils.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Demo\IL2CPP_ProcessDemo.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\View\Theme.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\CompressCommand.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Streams\OutputWindow.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\EventDispatcher\EventDispatcher.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Streams\InflaterInputStream.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\ChooseFile\ChooseFileView.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Int\GameEventSO_I.cs" />
     <Compile Include="Assets\Scripts\Loggers\MemoryLogger.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\IBoxCreator.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\CustomUI\ButtonWithLongPress.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\ChooseDirectory.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarBuffer.cs" />
+    <Compile Include="Assets\Scripts\Video\VideoCallbackHandler.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryBox.cs" />
     <Compile Include="Assets\Scripts\References\TestCriteria.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Shared\Event.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Utils\StringUtil.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipException.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipEntry.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\LBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Void\GameEventSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseRECView.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\BoxCreatorFactory.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipNameTransform.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Platforms\Android\FFmpegAndroid.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarException.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Shared\EventListener.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\CustomUI\LimitedTextView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Streams\StreamManipulator.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseDirectInput.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Audio\WAV.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Demo\DemoCases\GigaVideoPlayerFromUrlDemo.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryTestSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseAddSoundFastDemoView.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\Logic\Internal\FileExtensionsUtil.cs" />
     <Compile Include="Assets\Scripts\URLUploader.cs" />
     <Compile Include="Assets\Scripts\Loggers\TestLogger.cs" />
     <Compile Include="Assets\Scripts\ILevelBuilder.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\Logic\VideoPlayerWrapper.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Platforms\IOS\FFmpegIOS.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\AppendFullCommand.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\DobleDiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\String\GameEventSO_S.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarArchive.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\DobleHorizontalBoxCreator.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\NameFilter.cs" />
     <Compile Include="Assets\Scripts\Memory\Cross.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Platforms\Shared\FFmpegMobileCallbacksHandler.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\GZip\GZipConstants.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseEncodeView.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\View\VideoCanvas.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Demo\GigaVideoPlayerDemo.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\WindowsNameTransform.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Utils\FileUnpacker.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarInputStream.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Fundamental\FFmpegCallbacksHandlerBase.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Shared\StartInfo.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Fundamental\FFmpegProcess.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Bear.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipEntryFactory.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipFile.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Lzw\LzwException.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\BZip2\BZip2Constants.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Encryption\PkzipClassic.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\EventDispatcher\EventDispatcherFactory.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Utils\PlatformVideoExtension.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\InflaterHuffmanTree.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\PathFilter.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\BZip2\BZip2.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\Basket.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\INameTransform.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\AppendFastCommand.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryBoxAnimator.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardsLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\Documento.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\TrimCommand.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Camera\TextureView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarHeader.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseDecodeView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\AddSoundFullCommand.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Deflater.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\YouTubeStreamCommand.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Fundamental\IFFmpegCallbacksHandler.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\BaseBoxCreator.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\FastZip.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\Exceptions\SharpZipBaseException.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Shared\EventFactory.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\GZip\GZip.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Encryption\ZipAESStream.cs" />
     <Compile Include="Assets\Scripts\Video\VideoCaptureMobile.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarExtendedHeaderReader.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\View\ColorSheme.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\Logic\RectUtil.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Checksum\Crc32.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\BZip2\BZip2OutputStream.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseAppendFastView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\IEntryFactory.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\Logic\Internal\LookupMode.cs" />
     <Compile Include="Assets\Scripts\Memory\TutorialController.cs" />
     <Compile Include="Assets\Scripts\Memory\IAnimatedObject.cs" />
     <Compile Include="Assets\Scripts\Memory\Validator\IValidator.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\Exceptions\UnexpectedEndOfStreamException.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\ChooseFile\ChooseAudioFileView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\InvalidNameException.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\GZip\GzipInputStream.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelBuilder.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\Exceptions\StreamDecodingException.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\VideoToImages.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Shared\EventType.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Lzw\LzwConstants.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Fundamental\FFmpegCallbacksHandlerDebug.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\ToyFactory.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Inflater.cs" />
     <Compile Include="Assets\Scripts\Video\VideoCaptureWeb.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\BZip2\BZip2InputStream.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\Void\GameEventListener.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Checksum\IChecksum.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Audio\IRecAudio.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Audio\RecSystemAudio.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterConstants.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipStrings.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\Items\FileView.cs" />
     <Compile Include="Assets\Scripts\References\Positions.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\Logic\Internal\FileBrowserFactory.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryLevelSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\IScanFilter.cs" />
     <Compile Include="Assets\Scripts\Memory\Distractor.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Console\ConsoleChunk.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\CustomUI\CanvasOrientation.cs" />
     <Compile Include="Assets\Scripts\Memory\Validator\EasyValidator.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\Progress\FFmpegProgress.cs" />
     <Compile Include="Assets\Scripts\Memory\Validator\HardValidator.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipExtraData.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\Items\DirectoryView.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\SpinningWheelView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Instructions.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterPending.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseSharedView.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\ChooseFile\ChooseImageFileView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\FFmpegRECState.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseConvertManyView.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseConvertView.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\Logic\VideoPlayerFactory.cs" />
     <Compile Include="Assets\Scripts\References\Cards.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\FileBrowserView.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Demo\DemoCases\GigaVideoPlayerFromClipDemo.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseVersionView.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\CustomUI\ScreenEvents.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\RGBToVideo.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\FileSystemScanner.cs" />
     <Compile Include="Assets\Scripts\References\MemoryObjects.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarEntry.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Demo\DemoCases\GigaVideoPlayerFromPathDemo.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\Progress\FFmpegProgressParser.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaFileBrowser\Code\View\Items\ItemView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\GZip\GZipException.cs" />
     <Compile Include="Assets\Scripts\Loggers\DimensionalTestLogger.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Audio\RecAudioSource.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\GZip\GzipOutputStream.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\StreamUtils.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\CRF.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseRECCameraView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\WatermarkCommand.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\BZip2\BZip2Exception.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\BaseCommand.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Encryption\ZipAESTransform.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Fundamental\FFmpeg.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\Logic\VideoSource.cs" />
     <Compile Include="Assets\Scripts\Imports\IL2CPP-Process\Code\Common\Dispatcher.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\TarOutputStream.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\FFmpegREC.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\DimensionalChangeTestSO.cs" />
-    <Compile Include="Assets\Scripts\Imports\GigaVideoPlayer\Code\Video.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Common\Result.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipEncryptionMethod.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseRECBaseView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Core\Exceptions\ValueOutOfRangeException.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Internal\EventDispatcher\EventType.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Camera\CameraView.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Lzw\LzwInputStream.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseAddSoundFullDemoView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\AddSoundFastCommand.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryGameController.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseTrimView.cs" />
     <Compile Include="Assets\Scripts\Memory\GameVars.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCaseView.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Console\Console.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Checksum\BZip2Crc.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\HorizontalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Console\ConsoleEventsHandler.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\Audio\RecMicAudio.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipHelperStream.cs" />
     <Compile Include="Assets\Scripts\Events\Extensions\String\GameEventListener_S.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipConstants.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Tar\InvalidHeaderException.cs" />
     <Compile Include="Assets\Scripts\Events\GameEventSOBase.cs" />
-    <Compile Include="Assets\Scripts\Imports\ICSharpCode.SharpZipLib\Zip\ZipInputStream.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\DemoCases\DemoCasesImplementation\DemoCaseWatermarkView.cs" />
     <Compile Include="Assets\Scripts\Memory\Creators\DiagonalBoxCreator.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Components\FFmpegREC\FFmpegRECPool.cs" />
-    <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Demo\Code\View\Components\ChooseFile\ChooseVideoFileView.cs" />
     <Compile Include="Assets\Scripts\Events\GameEventListenerBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -319,7 +195,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Scripts\Imports\FFmpegUnityBind2\Credit.txt" />
-     <None Include="Assets\Scripts\Imports\GigaFileBrowser\README.txt" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
@@ -920,8 +795,14 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
@@ -953,14 +834,17 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="VSSettingsProvider">
-      <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="VSSettingsProvider">
+      <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
@@ -998,8 +882,17 @@
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>

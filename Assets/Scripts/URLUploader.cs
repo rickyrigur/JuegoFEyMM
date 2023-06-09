@@ -13,9 +13,9 @@ public class URLUploader : MonoBehaviour
 
     private void Start()
     {
-        string path = "C:/Users/JuanP/Desktop/Prueba.txt";
-        path = path.Replace("/", @"\");
-        UploadFile(path);
+        //string path = "C:/Users/JuanP/Desktop/Prueba.txt";
+        //path = path.Replace("/", @"\");
+        //UploadFile(path);
     }
 
     public void UploadFile(string filePath)

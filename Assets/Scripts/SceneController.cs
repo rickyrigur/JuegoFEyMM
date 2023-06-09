@@ -12,7 +12,6 @@ public class SceneController : MonoBehaviour
 
     public void Start()
     {
-        NativeCamera.RequestPermission(true);
         Permission.RequestUserPermission(Permission.Microphone);
         Permission.RequestUserPermission(Permission.Camera);
     }

@@ -26,9 +26,9 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
     private Queue<DimensionalChangeTestSO> _tests = new Queue<DimensionalChangeTestSO>();
 
 
-    private readonly Vector3 _leftBasketPosition = new Vector3(-8.5f, 0f, 0);
-    private readonly Vector3 _rightBasketPosition = new Vector3(8.5f, 0f, 0);
-    private readonly Vector3 _middlePosition = new Vector3(0, -13, 0);
+    private readonly Vector3 _leftBasketPosition = new Vector3(-8.5f, 0f, 1);
+    private readonly Vector3 _rightBasketPosition = new Vector3(8.5f, 0f, 1);
+    private readonly Vector3 _middlePosition = new Vector3(0, -13, 1);
     private readonly Vector3 _sampleScale = new Vector3(0.18f, 0.18f, 0);
 
     private void Awake()

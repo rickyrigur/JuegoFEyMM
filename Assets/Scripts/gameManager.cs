@@ -36,6 +36,14 @@ public class gameManager : MonoBehaviour
     private Transform carta;
     private bool _incorrecto;
 
+    public bool exitAudioPlayed;
+    public bool videoProcessed;
+
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
@@ -61,7 +69,7 @@ public class gameManager : MonoBehaviour
         Vector2 objPosition = Camera.main.ScreenToWorldPoint(MousePosition);
         if (carta != null)
         {
-            carta.transform.position = objPosition;
+            carta.transform.position = new Vector3(objPosition.x, objPosition.y, 1);
         }
     }
 
@@ -187,6 +195,20 @@ public class gameManager : MonoBehaviour
     {
         EndGameAudio.Play();
         yield return new WaitForSeconds(EndGameAudio.Lenght);
-        SceneManager.LoadScene(0);
+        exitAudioPlayed = true;
+        CheckIfCanExit();
+    }
+
+    public void VideoProcessed()
+    {
+        videoProcessed = true;
+        CheckIfCanExit();
+    }
+
+
+    public void CheckIfCanExit()
+    {
+        if (exitAudioPlayed && videoProcessed)
+            SceneManager.LoadScene(0);
     }
 }

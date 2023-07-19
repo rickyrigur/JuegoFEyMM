@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2115948997515311003}
   - component: {fileID: 2115948997515311002}
   - component: {fileID: -8264622170381696041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PerroNaranjaDoble
   m_TagString: CartaPerro
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115948997515311006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

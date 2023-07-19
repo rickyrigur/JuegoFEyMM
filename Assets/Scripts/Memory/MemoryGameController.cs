@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,11 @@ public class MemoryGameController : MonoBehaviour
     public bool exitAudioPlayed;
     public bool videoProcessed;
     public AudioClipSO EndGameAudio;
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     public void FinalizarJuego()
     {
         StartCoroutine(EndGame());

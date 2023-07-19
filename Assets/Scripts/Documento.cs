@@ -5,11 +5,12 @@ public class Documento : MonoBehaviour
 {
     private string _documentPath;
     public string fileName = "";
+    public bool _test;
 
     void Awake()
     {
         Directory.CreateDirectory(Application.persistentDataPath + "/Documento_Logs/");
-        _documentPath = Application.persistentDataPath + "/Documento_Logs/" + "Resultados " + fileName + ".txt";
+        _documentPath = Application.persistentDataPath + "/Documento_Logs/" + fileName + ".txt";
         CreateDocument();
     }
     private void CreateDocument()
@@ -22,7 +23,8 @@ public class Documento : MonoBehaviour
 
     private void Start()
     {
-        File.WriteAllText(_documentPath, "Resultados ensayo \n \n");
+        string title = _test ? "Resultados ensayo \n \n" : fileName + "\n \n";
+        File.WriteAllText(_documentPath, title);
     }
 
     public void AddToDocument(string data)

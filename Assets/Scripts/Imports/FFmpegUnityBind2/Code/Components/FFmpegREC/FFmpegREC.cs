@@ -154,6 +154,8 @@ namespace FFmpegUnityBind2.Components
                 resolution = initialResultion;
             }
 
+            resolution = new Vector2Int(Screen.width, Screen.height);
+
             frameBuffer = new Texture2D(resolution.x, resolution.y, TextureFormat.RGB24, false, true);
             camRect = new Rect(Vector2.zero, resolution);
             Camera = GetComponent<Camera>();

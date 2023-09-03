@@ -10,9 +10,7 @@ public class SceneController : MonoBehaviour
 
     public void Start()
     {
-        Permission.RequestUserPermission(Permission.Microphone);
-        Permission.RequestUserPermission(Permission.Camera);
-
+        Permission.RequestUserPermissions(new string[] { Permission.Microphone, Permission.Camera});
     }
 
     public void LoadScene(int sceneNumber)

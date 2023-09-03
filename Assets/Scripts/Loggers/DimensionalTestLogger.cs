@@ -35,6 +35,17 @@ public class DimensionalTestLogger : TestLogger<DimensionalChangeTestSO, Dimensi
         ResetLogger();
     }
 
+    public override void ReloadLevel()
+    {
+        if (_correct != 0 || _incorrect != 0)
+        {
+            string log = $"Correctos: {_correct} \nIncorrectos: {_incorrect} \nTiempo: {_time} Segundos \nRejugando nivel\n";
+            logEvent.Happen(log);
+        }
+        _testNumber = 0;
+        ResetLogger();
+    }
+
     public override void ResetLogger()
     {
         _correct = 0;

@@ -161,6 +161,7 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
         _boxCreatorFactory.CleanBoxes();
         GameVars.DistractorShowed = false;
         OnReplayTest?.Invoke();
+        _logger.ReloadLevel();
         OnBuildTest?.Invoke();
     }
 

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 75684585}
   - component: {fileID: 75684584}
   - component: {fileID: 75684583}
+  - component: {fileID: 75684587}
   m_Layer: 0
   m_Name: Document
   m_TagString: Untagged
@@ -212,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: Resultados Memoria
   _test: 1
+  uploader: {fileID: 75684587}
 --- !u!4 &75684586
 Transform:
   m_ObjectHideFlags: 0
@@ -226,6 +228,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &75684587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75684582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144723978f21da048a09d4f044ddbbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onVideoUploadSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 1eb9a9c6f5ac1d640acae78227b5e230, type: 2}
+        m_TargetAssemblyTypeName: GameEventSO, Assembly-CSharp
+        m_MethodName: Happen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onVideoUploadFail:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 1eb9a9c6f5ac1d640acae78227b5e230, type: 2}
+        m_TargetAssemblyTypeName: GameEventSO, Assembly-CSharp
+        m_MethodName: Happen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &115098402
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +384,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 546137835}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 850931474}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Subiendo archivos... Por favor espere
+          m_BoolArgument: 0
+        m_CallState: 2
   _recordingCamera: {fileID: 1576277635}
   _cameraView: {fileID: 787541879}
   _processingProgressUI: {fileID: 687500076}
@@ -428,13 +496,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144723978f21da048a09d4f044ddbbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _url: http://194.195.86.65/Proyecto/videoUploader.php
   onVideoUploadSuccess:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a0364287806317e43935c0cc4f1eb195, type: 2}
+        m_TargetAssemblyTypeName: GameEventSOBase`1[[System.String, mscorlib
+        m_MethodName: Happen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 75684585}
+        m_TargetAssemblyTypeName: Documento, Assembly-CSharp
+        m_MethodName: SendDocument
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onVideoUploadFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a0364287806317e43935c0cc4f1eb195, type: 2}
+        m_TargetAssemblyTypeName: GameEventSOBase`1[[System.String, mscorlib
+        m_MethodName: Happen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 75684585}
+        m_TargetAssemblyTypeName: Documento, Assembly-CSharp
+        m_MethodName: SendDocument
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &115098408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: Memory Compilation Log
   _test: 0
+  uploader: {fileID: 0}
 --- !u!1 &136638748
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continuar
+  m_Text: Repetir Audio
 --- !u!222 &173194440
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2240,7 +2356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69e314ca21755442bd2c8da66cb4624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6fe781698a6d28f44919b119c89abda4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 1eb9a9c6f5ac1d640acae78227b5e230, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -2354,6 +2470,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 092de14e2d18a7b4a9ce47f8c3b9e56b, type: 2}
         m_TargetAssemblyTypeName: GameEventSO, Assembly-CSharp
         m_MethodName: Happen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1514353116}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: EmpezarAudio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

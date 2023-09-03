@@ -17,4 +17,6 @@ public abstract class TestLogger<Test, Level> : MonoBehaviour
     public abstract void LogTest();
 
     public abstract void ResetLogger();
+
+    public abstract void ReloadLevel();
 }

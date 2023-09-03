@@ -1,35 +1,27 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
-public class URLUploader : MonoBehaviour
+public class HTTPUploader : AbstractUploader
 {
-    public string _url = "http://194.195.86.65/Proyecto/videoUploader.php";
-    
-	public UnityEvent<string> onVideoUploadSuccess;
-	public UnityEvent<string> onVideoUploadFail;
+    private string _url = "http://194.195.86.65/upload";
 
-    private void Start()
+    public HTTPUploader(string url, UnityEvent<string> onSuccess, UnityEvent<string> onFail) : base(onSuccess, onFail) 
     {
-        //string path = "C:/Users/JuanP/Desktop/Prueba.txt";
-        //path = path.Replace("/", @"\");
-        //UploadFile(path);
+        _url = url;
     }
 
-    public void UploadFile(string filePath)
-    {
-        StartCoroutine(Upload(filePath));
-    }
-
-    public IEnumerator Upload(string filePath)
+    public override IEnumerator Upload(string filePath)
     {
         Debug.Log("UPLOADING: " + filePath);
         UnityWebRequest file = UnityWebRequest.Get("file://" + filePath);
         yield return file.SendWebRequest();
         WWWForm form = new WWWForm();
-        form.AddBinaryData("dataFile", file.downloadHandler.data, Path.GetFileName(filePath));
+        string playerName = PlayerPrefs.GetString(MainMenuController.NAME, "");
+        string fileName = Path.GetFileName(filePath);
+        form.AddBinaryData("files[]", file.downloadHandler.data, $"{playerName}/{fileName}");
         var upload = UnityWebRequest.Post(_url, form);
         yield return upload.SendWebRequest();
 

@@ -101,6 +101,7 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
 
     public void ReplayTest()
     {
+        logger.ReloadLevel();
         BuildTest(_currentTest, true);
     }
 

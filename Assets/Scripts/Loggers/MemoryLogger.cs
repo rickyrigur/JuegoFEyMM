@@ -41,4 +41,7 @@ public class MemoryLogger : TestLogger<MemoryTestSO, MemoryLevelSO>
         GameVars.WrongAmount = 0;
         _time = 0;
     }
+
+    public override void ReloadLevel()
+    {}
 }

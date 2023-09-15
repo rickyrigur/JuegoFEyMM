@@ -111,7 +111,6 @@
     <Compile Include="Assets\Scripts\DimensionalChange\Basket.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\AppendFastCommand.cs" />
     <Compile Include="Assets\Scripts\Memory\MemoryBoxAnimator.cs" />
-    <Compile Include="Assets\Scripts\Uploader\DriveUploader.cs" />
     <Compile Include="Assets\Scripts\DimensionalChange\CardsLevelBuilder.cs" />
     <Compile Include="Assets\Scripts\Documento.cs" />
     <Compile Include="Assets\Scripts\Imports\FFmpegUnityBind2\Code\Data\Commands\TrimCommand.cs" />
@@ -186,7 +185,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\Plugins\Newtonsoft.Json Portable\Newtonsoft.Json.xml" />
-     <None Include="Assets\UnityGoogleDrive\ThirdParty\JsonNet-Lite\UnityGoogleDrive.Newtonsoft.Json.dll" />
      <None Include="Assets\StreamingAssets\Documento_Logs\Resultados.txt" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.xml" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.xml" />
@@ -206,7 +204,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-     <None Include="Assets\UnityGoogleDrive\ThirdParty\JsonNet-Lite\LICENSE.txt" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\Scripts\Imports\IL2CPP-Process\Newtonsoft.Json-for-Unity-12.0.301\link.xml" />
@@ -915,14 +912,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Elringus.UnityGoogleDrive.Runtime.csproj">
-      <Project>{3FE41389-E8C5-74E5-62D7-A6D0A6DE64EB}</Project>
-      <Name>Elringus.UnityGoogleDrive.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Elringus.UnityGoogleDrive.Editor.csproj">
-      <Project>{7DCC4388-41D8-3320-4362-C2C83BAE0E5B}</Project>
-      <Name>Elringus.UnityGoogleDrive.Editor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

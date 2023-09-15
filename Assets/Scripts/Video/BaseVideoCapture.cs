@@ -14,8 +14,10 @@ public abstract class BaseVideoCapture : MonoBehaviour, IVideoCapture
 
     public void StartRecording()
     {
+#if UNITY_ANDROID
         SetPath();
         StartVideoCapture();
+#endif
     }
 
     public void StopRecording()

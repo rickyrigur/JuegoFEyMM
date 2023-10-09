@@ -344,9 +344,9 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 11
+    m_FontSize: 180
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 180
     m_Alignment: 4
@@ -400,7 +400,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 4.99}
+    oldSize: {x: 5.12, y: 5}
     newSize: {x: 5.12, y: 4.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolution: {x: 0, y: 0}
-  audioSource: 0
+  audioSource: 2
   targetFPS: 15
   quality: 23
   writingThreadsCount: 8
@@ -3276,7 +3276,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 4.99}
+    oldSize: {x: 5.12, y: 5}
     newSize: {x: 5.12, y: 4.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

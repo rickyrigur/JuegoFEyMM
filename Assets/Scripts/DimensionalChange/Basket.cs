@@ -50,13 +50,13 @@ public class Basket : MonoBehaviour
             case TestCriteria.COLOR:
                 return _sampleCard.color == card.color;
 
-            case TestCriteria.TAMAÑO:
+            case TestCriteria.TAMANO:
                 return _sampleCard.tamano == card.tamano;
 
             case TestCriteria.COLOR_OPUESTO: //Color opuesto
                 return _sampleCard.color != card.color;
 
-            case TestCriteria.TAMAÑO_OPUESTO: //Tamano opuesto
+            case TestCriteria.TAMANO_OPUESTO: //Tamano opuesto
                 return _sampleCard.tamano != card.tamano;
 
             default:

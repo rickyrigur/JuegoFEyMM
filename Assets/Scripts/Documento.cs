@@ -36,7 +36,6 @@ public class Documento : MonoBehaviour
         if (_sending)
             return;
         File.AppendAllText(_documentPath ,data + "\n");
-        Debug.Log(data);
     }
 
     public void AddToDocumentWithTimestamp(string data)

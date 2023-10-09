@@ -5,7 +5,7 @@ using UnityEngine;
 public enum MemoryObjects
 {
     AUTO,
-    MUÑECA,
+    MUNECA,
     TRACTOR,
     GLOBO,
     PELOTA

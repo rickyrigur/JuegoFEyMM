@@ -2,7 +2,7 @@ public enum TestCriteria
 {
     FORMA,
     COLOR,
-    TAMAÑO,
+    TAMANO,
     COLOR_OPUESTO,
-    TAMAÑO_OPUESTO
+    TAMANO_OPUESTO
 }

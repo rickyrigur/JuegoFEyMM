@@ -1683,6 +1683,7 @@ GameObject:
   - component: {fileID: 1169331348}
   - component: {fileID: 1169331347}
   - component: {fileID: 1169331349}
+  - component: {fileID: 1169331350}
   m_Layer: 5
   m_Name: Distractor
   m_TagString: Untagged
@@ -1778,6 +1779,25 @@ MonoBehaviour:
   OnDistractorAnimationStarts:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1169331350
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169331345}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 170420d4fd57e48b69939f24f0ca2aa0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1393204930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolution: {x: 0, y: 0}
-  audioSource: 0
+  audioSource: 2
   targetFPS: 15
   quality: 23
   writingThreadsCount: 8

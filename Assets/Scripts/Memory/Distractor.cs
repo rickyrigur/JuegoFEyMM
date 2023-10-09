@@ -9,38 +9,35 @@ public class Distractor : MonoBehaviour
 {
     public float animationTime = 0.5f;
     private Image _image => GetComponent<Image>();
+    private Animator _anim => GetComponent<Animator>();
+    private float _distractionTime;
 
     public UnityEvent OnDistractorAnimationEnds; 
-    public UnityEvent OnDistractorAnimationStarts; 
+    public UnityEvent OnDistractorAnimationStarts;
 
     public void Animate(float duration)
     {
+        _distractionTime = duration;
         transform.localScale = Vector3.zero;
         _image.enabled = true;
         OnDistractorAnimationStarts?.Invoke();
-        StartCoroutine(AnimateDistractor(Vector3.one));
-        StartCoroutine(AnimateDistractor(Vector3.zero, duration, true));
+        _anim.SetTrigger("Animate");
     }
 
-    IEnumerator AnimateDistractor(Vector3 finalScale, float delay = 0, bool markAsShowed = false)
+    public void OnAnimateInEnds() 
     {
-        yield return new WaitForSeconds(delay);
-        Vector3 initialScale = transform.localScale;
+        StartCoroutine(WaitForSeconds());
+    }
 
-        for (float time = 0; time < animationTime; time += Time.deltaTime)
-        {
-            float progress = Mathf.PingPong(time, animationTime) / animationTime;
-            transform.localScale = Vector3.Lerp(initialScale, finalScale, progress);
-            yield return null;
-        }
-        transform.localScale = finalScale;
+    IEnumerator WaitForSeconds()
+    {
+        yield return new WaitForSeconds(_distractionTime);
+        _anim.SetTrigger("Animate");     
+    }
 
-        if (markAsShowed)
-            GameVars.DistractorShowed = true;
-
-        if (finalScale == Vector3.zero)
-        {
-            OnDistractorAnimationEnds?.Invoke();
-        }
+    public void onAnimateOutEnds() 
+    {
+        GameVars.DistractorShowed = true;
+        OnDistractorAnimationEnds?.Invoke();
     }
 }

@@ -24,15 +24,13 @@ public class InputController : MonoBehaviour
         {
             OnPress?.Invoke();
         }
-
-        if (Input.GetMouseButton(0))
-        {
-            OnMaintain?.Invoke();
-        }
-
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0)) 
         {
             OnRelease?.Invoke();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            OnMaintain?.Invoke();
         }
     }
 

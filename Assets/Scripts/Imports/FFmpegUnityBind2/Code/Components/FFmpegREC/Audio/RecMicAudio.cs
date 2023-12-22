@@ -11,6 +11,7 @@ namespace FFmpegUnityBind2.Components
 
         public void StartRecording()
         {
+            maxLength = 1800;
             buffer = Microphone.Start(null, false, maxLength, AudioSettings.outputSampleRate);
         }
 

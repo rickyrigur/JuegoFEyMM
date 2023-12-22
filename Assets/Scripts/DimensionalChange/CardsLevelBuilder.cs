@@ -9,6 +9,9 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
     public Basket basketLeft;
     public Basket basketRight;
 
+    public Transform samplesParent;
+    public Transform cardsParent;
+
     public List<DimensionalChangeLevelSO> levels;
 
     public DimensionalTestLogger logger;
@@ -26,10 +29,10 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
     private Queue<DimensionalChangeTestSO> _tests = new Queue<DimensionalChangeTestSO>();
 
 
-    private readonly Vector3 _leftBasketPosition = new Vector3(-8.5f, 0f, 1);
-    private readonly Vector3 _rightBasketPosition = new Vector3(8.5f, 0f, 1);
-    private readonly Vector3 _middlePosition = new Vector3(0, -13, 1);
-    private readonly Vector3 _sampleScale = new Vector3(0.18f, 0.18f, 0);
+    private readonly Vector3 _leftBasketPosition = new Vector3(-272f, -50f, 1);
+    private readonly Vector3 _rightBasketPosition = new Vector3(272f, -50f, 1);
+    private readonly Vector3 _middlePosition = new Vector3(0, -500, 1);
+    private readonly Vector3 _sampleScale = new Vector3(0.75f, 0.75f, 0);
 
     private void Awake()
     {
@@ -122,15 +125,23 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
 
     private void BuildSamples(CardSO sampleLeft, CardSO sampleRight)
     {
-        GameObject sampleLeftPrefab = sampleLeft.Clone(_leftBasketPosition, Quaternion.identity, _sampleScale);
-        GameObject sampleRightPrefab = sampleRight.Clone(_rightBasketPosition, Quaternion.identity, _sampleScale);
+        GameObject sampleLeftPrefab = sampleLeft.Clone(_leftBasketPosition, Quaternion.identity, _sampleScale, samplesParent);
+        GameObject sampleRightPrefab = sampleRight.Clone(_rightBasketPosition, Quaternion.identity, _sampleScale, samplesParent);
+
         sampleLeftPrefab.tag = "Muestra";
         sampleRightPrefab.tag = "Muestra";
+
         sampleLeftPrefab.GetComponent<Collider2D>().enabled = false;
         sampleRightPrefab.GetComponent<Collider2D>().enabled = false;
 
-        basketLeft.LoadSampleCard(sampleLeftPrefab.GetComponent<Carta>());
-        basketRight.LoadSampleCard(sampleRightPrefab.GetComponent<Carta>());
+        Carta leftCard = sampleLeftPrefab.GetComponent<Carta>();
+        leftCard.DeactivateDrag();
+
+        Carta rightCard = sampleRightPrefab.GetComponent<Carta>();
+        rightCard.DeactivateDrag();
+
+        basketLeft.LoadSampleCard(leftCard);
+        basketRight.LoadSampleCard(rightCard);
 
         _cards.Enqueue(sampleLeftPrefab);
         _cards.Enqueue(sampleRightPrefab);
@@ -149,7 +160,7 @@ public class CardsLevelBuilder : MonoBehaviour, ILevelBuilder<DimensionalChangeL
         if (_loadedCards.Count > 0)
         {
             CardSO currentCard = _loadedCards.Dequeue();
-            GameObject card = Instantiate(currentCard.Prefab, _middlePosition, Quaternion.identity);
+            GameObject card = currentCard.Clone(_middlePosition, Quaternion.identity, Vector3.one, cardsParent);
             _cards.Enqueue(card);
         }
         else

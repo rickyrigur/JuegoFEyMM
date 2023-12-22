@@ -6,29 +6,7 @@ public class Basket : MonoBehaviour
     private Carta _sampleCard;
     private TestCriteria _testCriteria;
 
-    private bool _animating;
-    private float _currentAnimationTime;
-    private float _duration;
-    private Vector3 _initialScale;
-    private Vector3 _endScale;
-
-    private void Update()
-    {
-        if (_animating)
-        {
-            if (_currentAnimationTime >= _duration)
-            {
-                _animating = false;
-                transform.localScale = _initialScale;
-            }
-            else
-            {
-                _currentAnimationTime += Time.deltaTime;
-                float progress = Mathf.PingPong(_currentAnimationTime, 1f);
-                transform.localScale = Vector3.Lerp(_initialScale, _endScale, progress);
-            }
-        }
-    }
+    private Animator _anim => GetComponent<Animator>();
 
     public void LoadSampleCard(Carta carta)
     {
@@ -65,16 +43,9 @@ public class Basket : MonoBehaviour
         }
     }
 
-    public void AnimateScale(Vector3 scale, float duration)
+    public void AnimateScale()
     {
-        if (_animating)
-            return;
-
-        _animating = true;
-        _currentAnimationTime = 0;
-        _duration = duration;
-        _initialScale = transform.localScale;
-        _endScale = scale;
+        _anim.SetTrigger("Animate");
     }
 
 }

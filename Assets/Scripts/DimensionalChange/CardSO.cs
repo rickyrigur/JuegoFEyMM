@@ -13,9 +13,10 @@ public class CardSO : ScriptableObject
     public GameObject Prefab { get { return _prefab; } }
     public Cards Type { get { return _type; } }
 
-    public GameObject Clone(Vector3 position, Quaternion rotation, Vector3 scale)
+    public GameObject Clone(Vector3 position, Quaternion rotation, Vector3 scale, Transform parent)
     {
-        GameObject clone = Instantiate(Prefab, position, rotation);
+        GameObject clone = Instantiate(Prefab, position, rotation, parent);
+        clone.GetComponent<RectTransform>().localPosition = position;
         clone.transform.localScale = scale;
         return clone;
     }

@@ -21,6 +21,8 @@ public class TutorialController : MonoBehaviour
 
     private int wrongAmount = 0;
 
+    private AudioManager _audioManager => FindObjectOfType<AudioManager>();
+
     private void Start()
     {
         GameVars.PlayingTutorial = true;
@@ -50,7 +52,7 @@ public class TutorialController : MonoBehaviour
     IEnumerator PlayAudiosAndValidate(AudioClipSO clip, UnityEvent callback)
     {
         clip.Play();
-        yield return new WaitForSeconds(clip.Lenght);
+        yield return new WaitWhile(() => _audioManager.EstaReproduciendo());
         callback?.Invoke();
     }
 }

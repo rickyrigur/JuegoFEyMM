@@ -2200,7 +2200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolution: {x: 0, y: 0}
-  audioSource: 2
+  audioSource: 0
   targetFPS: 15
   quality: 23
   writingThreadsCount: 8

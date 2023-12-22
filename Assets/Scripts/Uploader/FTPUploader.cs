@@ -23,7 +23,6 @@ public class FTPUploader : AbstractUploader
         yield return file.SendWebRequest();
         if (file == null)
         {
-            Debug.Log("FILE IS NULL");
             onVideoUploadFail?.Invoke("UPLOAD FAILED: FILE IS NULL");
         }
         FTP ftpClient = new FTP($"{m_FtpHost}", m_FtpUsername, m_FtpPassword);

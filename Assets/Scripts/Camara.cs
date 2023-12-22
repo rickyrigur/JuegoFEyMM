@@ -32,18 +32,4 @@ public class Camara : MonoBehaviour
             textoCamOnOff.text = "Camera OFF";
         }
     }
-
-    void Start()
-    {
-        //camTexture = new WebCamTexture();
-        //camTexture.Play();
-        //gameObject.GetComponent<SpriteRenderer>().material.mainTexture = camTexture;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -8,6 +8,8 @@ public class MemoryGameController : MonoBehaviour
     public bool exitAudioPlayed;
     public bool videoProcessed;
     public AudioClipSO EndGameAudio;
+
+    private AudioManager _audiomanager => FindObjectOfType<AudioManager>();
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -21,7 +23,7 @@ public class MemoryGameController : MonoBehaviour
     IEnumerator EndGame()
     {
         EndGameAudio.Play();
-        yield return new WaitForSeconds(EndGameAudio.Lenght);
+        yield return new WaitWhile(() => _audiomanager.EstaReproduciendo());
         exitAudioPlayed = true;
         CheckIfCanExit();
     }

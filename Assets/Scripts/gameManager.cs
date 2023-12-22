@@ -33,7 +33,6 @@ public class gameManager : MonoBehaviour
     public AudioClipSO EndGameAudio;
 
     private AudioManager audioManager;
-    private Transform carta;
     private bool _incorrecto;
 
     public bool exitAudioPlayed;
@@ -50,41 +49,18 @@ public class gameManager : MonoBehaviour
         OnGameLoad?.Invoke();
     }
 
-    public void OnPress()
+    public void ValidatePointer(Vector2 position, Carta card)
     {
-        carta = null;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        Collider2D cardCollider = card.GetComponent<Collider2D>();
+        Collider2D basketLCollider = canastaL.GetComponent<Collider2D>();
+        Collider2D basketRCollider = canastaR.GetComponent<Collider2D>();
 
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-        if (hit.collider != null && hit.collider.gameObject.tag != "Canasta" && hit.collider.gameObject.tag != "Muestra")
+        List<Collider2D> res = new List<Collider2D>();
+        if (cardCollider.OverlapCollider(new ContactFilter2D(), res) > 0)
         {
-            carta = hit.collider.gameObject.GetComponent<Transform>();
-        }
-    }
-
-    public void OnMaintain()
-    {
-        Vector2 MousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 objPosition = Camera.main.ScreenToWorldPoint(MousePosition);
-        if (carta != null)
-        {
-            carta.transform.position = new Vector3(objPosition.x, objPosition.y, 1);
-        }
-    }
-
-    public void OnRelease()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-        if (hit.collider != null && hit.collider.gameObject.tag != "Canasta" && hit.collider.gameObject.tag != "Muestra" && carta != null)
-        {
-            if (hit.collider.OverlapPoint(canastaL.transform.position))
+            if (res.Contains(basketLCollider))
             {
-                if (canastaL.Validate(carta.GetComponent<Carta>()))
+                if (canastaL.Validate(card))
                     OnCorrect?.Invoke();
                 else
                 {
@@ -92,14 +68,14 @@ public class gameManager : MonoBehaviour
                     OnIncorrect?.Invoke();
                 }
 
-                carta.GetComponent<Collider2D>().enabled = false;
-                carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
+                cardCollider.enabled = false;
+                card.DeactivateDrag();
+                card.transform.localScale = new Vector3(0.6f, 0.6f, 0);
                 OnCardPlaced?.Invoke();
             }
-
-            else if (hit.collider.OverlapPoint(canastaR.transform.position))
+            else if (res.Contains(basketRCollider))
             {
-                if (canastaR.Validate(carta.GetComponent<Carta>()))
+                if (canastaR.Validate(card))
                     OnCorrect?.Invoke();
                 else
                 {
@@ -107,8 +83,9 @@ public class gameManager : MonoBehaviour
                     OnIncorrect?.Invoke();
                 }
 
-                carta.GetComponent<Collider2D>().enabled = false;
-                carta.transform.localScale = new Vector3(0.2f, 0.2f, 0);
+                cardCollider.enabled = false;
+                card.DeactivateDrag();
+                card.transform.localScale = new Vector3(0.6f, 0.6f, 0);
                 OnCardPlaced?.Invoke();
             }
         }
@@ -124,15 +101,13 @@ public class gameManager : MonoBehaviour
         if(!audioManager.EstaReproduciendo())
         {
             OnIntroStarts?.Invoke();
-            yield return new WaitForSeconds(audioManager.TiempoAudio());
+            yield return new WaitWhile(() => audioManager.EstaReproduciendo());
             OnIntroEnds?.Invoke();
 
-            Vector3 endScale = new Vector3(2.5f, 2.5f, 0);
-
             yield return new WaitForSeconds(6f);
-            canastaL.AnimateScale(endScale, 2);
+            canastaL.AnimateScale();
             yield return new WaitForSeconds(3f);
-            canastaR.AnimateScale(endScale, 2);
+            canastaR.AnimateScale();
             yield return new WaitForSeconds(2f);
         }        
     }
@@ -153,15 +128,13 @@ public class gameManager : MonoBehaviour
     
     IEnumerator PlaySecondLevel()
     {
-        yield return new WaitForSeconds(audioManager.TiempoAudio());
+        yield return new WaitWhile(() => audioManager.EstaReproduciendo());
         OnSecondLevelIntroEnds?.Invoke();
 
-        Vector3 endScale = new Vector3(2.5f, 2.5f, 0);
         yield return new WaitForSeconds(7f);
-        canastaR.AnimateScale(endScale, 2);
-
+        canastaR.AnimateScale();
         yield return new WaitForSeconds(4f);
-        canastaL.AnimateScale(endScale, 2);
+        canastaL.AnimateScale();
     }
 
     public void EndLevel7Training()
@@ -176,13 +149,13 @@ public class gameManager : MonoBehaviour
 
     IEnumerator NivelSieteInicioSubnivel()
     {
-        yield return new WaitForSeconds(audioManager.TiempoAudio() + 1f);
+        yield return new WaitWhile(() => audioManager.EstaReproduciendo());
         OnLevel7IntroEnds?.Invoke();
     }
 
     IEnumerator NivelOchoInicioSubnivel()
     {
-        yield return new WaitForSeconds(audioManager.TiempoAudio() + 1f);
+        yield return new WaitWhile(() => audioManager.EstaReproduciendo());
         OnLevel8IntroEnds?.Invoke();
     }
 
@@ -194,7 +167,7 @@ public class gameManager : MonoBehaviour
     IEnumerator EndGame()
     {
         EndGameAudio.Play();
-        yield return new WaitForSeconds(EndGameAudio.Lenght);
+        yield return new WaitWhile(() => audioManager.EstaReproduciendo());
         exitAudioPlayed = true;
         CheckIfCanExit();
     }

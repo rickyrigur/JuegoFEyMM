@@ -43,6 +43,8 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
     private MemoryTestSO _currentTest;
     private MemoryLevelSO _currentLevel;
 
+    private AudioManager _audioManager => FindObjectOfType<AudioManager>();
+
     private delegate void WaitCallback();
 
     private void Start()
@@ -99,36 +101,42 @@ public class MemoryLevelBuilder : MonoBehaviour, ILevelBuilder<MemoryLevelSO, Me
         _toyFactory.ClearCrosses();
         _boxCreatorFactory.CreateBoxesAndToys(test, objectsToUse, validator, _toyFactory);
 
-        float introLenght = 0;
         if (test.introAudio != null)
         {
-            introLenght = test.introAudio.Lenght;
             test.introAudio.Play();
         }
 
-        StartCoroutine(WaitForSeconds(introLenght + test.timeToMemorize, _toyFactory.AnimateAllToys));
-
-        StartCoroutine(WaitForSeconds(introLenght + test.timeToMemorize + 0.5f, () => {
-            if (test.audio != null)
-            {
-                _currentTest.audio.Play();
-                StartCoroutine(WaitForSeconds(test.audio.Lenght, () => {
-                    _distractor.Animate(test.delay);
-                    OnBuildTest?.Invoke();
-                }));
-            }
-            else
-            {
-                _distractor.Animate(test.delay);
-                OnBuildTest?.Invoke();
-            }
-        }));
+        StartCoroutine(WaitForIntro());
     }
 
-    private IEnumerator WaitForSeconds(float seconds, WaitCallback callback)
+    private IEnumerator WaitForIntro()
     {
-        yield return new WaitForSeconds(seconds);
-        callback();
+        yield return new WaitWhile(() => _audioManager.EstaReproduciendo());
+        _toyFactory.AnimateAllToys();
+
+        if (_currentTest.audio != null)
+        {
+            _currentTest.audio.Play();
+            StartCoroutine(RunTest());
+        }
+        else
+        {
+            OnRunTestEnd();
+        }
+
+        StartCoroutine(RunTest());
+    }
+
+    private IEnumerator RunTest()
+    {
+        yield return new WaitWhile(() => _audioManager.EstaReproduciendo());
+        OnRunTestEnd();
+    }
+
+    private void OnRunTestEnd()
+    {
+        _distractor.Animate(_currentTest.delay);
+        OnBuildTest?.Invoke();
     }
 
     public void OnNextTest()

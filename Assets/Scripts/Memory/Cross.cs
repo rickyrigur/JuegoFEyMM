@@ -8,7 +8,10 @@ public class Cross : MonoBehaviour, IAnimatedObject
 {
     public float animationTime;
     public float stayDuration;
+
+    private IAnimatedObject.onAnimationEnd _onAnimationEnd;
     private Image _image => GetComponent<Image>();
+    private Animator _animator => GetComponent<Animator>();
 
     public Cross Clone(Vector3 position, Vector2 widthAndHeight, Transform parent)
     {
@@ -42,6 +45,11 @@ public class Cross : MonoBehaviour, IAnimatedObject
         _image.enabled = false;
     }
 
+    private void Start()
+    {
+        _image.enabled = false;
+    }
+
     public void SetSize()
     {
         Vector2 widthAndHeight = GameVars.BoxWidthAndHeight;
@@ -67,31 +75,11 @@ public class Cross : MonoBehaviour, IAnimatedObject
         transform.localPosition = position;
     }
 
-    IEnumerator AnimateSize(IAnimatedObject.onAnimationEnd callback)
+    public void OnCrossAnimateEnd()
     {
-        for (float time = 0; time < animationTime; time += Time.deltaTime)
+        if (_onAnimationEnd != null)
         {
-            float progress = Mathf.PingPong(time, animationTime) / animationTime;
-            transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, progress);
-            yield return null;
-        }
-        transform.localScale = Vector3.one;
-
-        yield return new WaitForSeconds(stayDuration);
-
-        for (float time = 0; time < animationTime; time += Time.deltaTime)
-        {
-            float progress = Mathf.PingPong(time, animationTime) / animationTime;
-            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, progress);
-            yield return null;
-        }
-        transform.localScale = Vector3.zero;
-        _image.enabled = false;
-
-        if (callback != null)
-        {
-            yield return new WaitForSeconds(0.5f);
-            callback();
+            _onAnimationEnd();
         }
     }
 
@@ -99,7 +87,8 @@ public class Cross : MonoBehaviour, IAnimatedObject
     {
         transform.localScale = Vector3.zero;
         _image.enabled = true;
-        StartCoroutine(AnimateSize(callback));
+        _onAnimationEnd = callback;
+        _animator.SetTrigger("Animate");
     }
 
     public void Destroy()

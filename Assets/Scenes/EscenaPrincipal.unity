@@ -1490,7 +1490,7 @@ MonoBehaviour:
   audioSource: 2
   targetFPS: 15
   quality: 23
-  writingThreadsCount: 8
+  writingThreadsCount: 2
   clearFlags: 2
   backgroundColor: {r: 0.19215688, g: 0.3019608, b: 0.47450984, a: 1}
 --- !u!114 &1096192435

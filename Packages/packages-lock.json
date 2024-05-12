@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "ai.natml.hub": {
+      "version": "1.0.20",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.com"
+    },
+    "ai.natml.natcorder": {
+      "version": "1.9.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "ai.natml.hub": "1.0.20"
+      },
+      "url": "https://registry.npmjs.com"
+    },
     "com.unity.2d.animation": {
       "version": "6.0.1",
       "depth": 0,

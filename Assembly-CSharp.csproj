@@ -850,8 +850,8 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="VSSettingsProvider">
-      <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
+    <Reference Include="NatML.Recorders">
+      <HintPath>Library\ScriptAssemblies\NatML.Recorders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
@@ -859,8 +859,14 @@
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
+    <Reference Include="VSSettingsProvider">
+      <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="NatML.Recorders.Editor">
+      <HintPath>Library\ScriptAssemblies\NatML.Recorders.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
@@ -871,8 +877,14 @@
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="NatML.Hub.Editor">
+      <HintPath>Library\ScriptAssemblies\NatML.Hub.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="NatML.Hub">
+      <HintPath>Library\ScriptAssemblies\NatML.Hub.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
@@ -912,6 +924,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NativeCamera.Runtime.csproj">
+      <Project>{2284B578-A530-5E1C-AB13-C1109C311B79}</Project>
+      <Name>NativeCamera.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="NativeCamera.Editor.csproj">
+      <Project>{8DC36180-1EC6-932E-213B-DC2EA119B99E}</Project>
+      <Name>NativeCamera.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -408,12 +408,13 @@ MonoBehaviour:
           m_StringArgument: Subiendo archivos... Por favor espere
           m_BoolArgument: 0
         m_CallState: 2
-  _recordingCamera: {fileID: 1576277635}
-  _cameraView: {fileID: 787541879}
   _processingProgressUI: {fileID: 687500076}
   _progressBar: {fileID: 546137837}
   _gameIdentifier: Memoria
   _compilationDocumentLogger: {fileID: 115098408}
+  width: 1920
+  height: 1080
+  frames: 20
 --- !u!4 &115098404
 Transform:
   m_ObjectHideFlags: 0

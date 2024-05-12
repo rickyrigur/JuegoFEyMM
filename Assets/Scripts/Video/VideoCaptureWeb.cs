@@ -1,4 +1,5 @@
-/*using UnityEngine;
+#if UNITY_STANDALONE_WIN
+using UnityEngine;
 using System.Linq;
 using UnityEngine.Windows.WebCam;
 
@@ -60,4 +61,4 @@ public class VideoCaptureWeb : BaseVideoCapture
         onEndRecording?.Invoke(_path);
     }
 }
-*/
+#endif

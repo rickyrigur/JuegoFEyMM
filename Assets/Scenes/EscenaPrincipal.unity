@@ -1891,12 +1891,13 @@ MonoBehaviour:
           m_StringArgument: Subiendo archivos... Por favor espere
           m_BoolArgument: 0
         m_CallState: 2
-  _recordingCamera: {fileID: 1096192434}
-  _cameraView: {fileID: 1195826983}
   _processingProgressUI: {fileID: 347127291}
   _progressBar: {fileID: 1098297696}
   _gameIdentifier: Cartas
   _compilationDocumentLogger: {fileID: 1132660433}
+  width: 1920
+  height: 1080
+  frames: 20
 --- !u!1 &1174636345
 GameObject:
   m_ObjectHideFlags: 0

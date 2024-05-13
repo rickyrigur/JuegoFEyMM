@@ -28,6 +28,7 @@ public class SceneController : MonoBehaviour
 
     public void ExitGame()
     {
+        Debug.Log("CALLED EXIT");
         Application.Quit();
     }
 }

@@ -18,37 +18,61 @@ public class FTPUploader : AbstractUploader
 
     public override IEnumerator Upload(string filePath)
     {
-
-        UnityWebRequest file = UnityWebRequest.Get("file://" + filePath);
-        yield return file.SendWebRequest();
-        if (file == null)
+        Debug.Log("START UPLOAD FOR " + filePath);
+        if (!File.Exists(filePath))
         {
-            onVideoUploadFail?.Invoke("UPLOAD FAILED: FILE IS NULL");
+            Debug.Log("File does not exist");
+            onVideoUploadFail?.Invoke("UPLOAD FAILED: FILE DOES NOT EXIST");
+            yield return null;
         }
-        FTP ftpClient = new FTP($"{m_FtpHost}", m_FtpUsername, m_FtpPassword);
-        string[] directories = ftpClient.directoryListSimple(directory);
-        bool createFolder = true;
-        string directoryName = PlayerPrefs.GetString(MainMenuController.NAME, "");
-
-        foreach (string currentDir in directories)
+        else
         {
-            if (currentDir == "")
-                continue;
+            Debug.Log("File exist");
 
-            if (currentDir == directoryName)
+            FTP ftpClient = new FTP($"{m_FtpHost}", m_FtpUsername, m_FtpPassword);
+
+            if (!ftpClient.peek(directory))
             {
-                createFolder = false;
-                break;
+                Debug.Log("Connection with server failed");
+                onVideoUploadFail?.Invoke("UPLOAD FAILED: CONNECTION FAILED");
+                yield return null;
+            }
+            else
+            {
+                string[] directories = directories = ftpClient.directoryListSimple(directory);
+
+                Debug.Log("Directories retrieved");
+
+                bool createFolder = true;
+                string directoryName = PlayerPrefs.GetString(MainMenuController.NAME, "");
+
+                foreach (string currentDir in directories)
+                {
+                    if (currentDir == "")
+                        continue;
+
+                    if (currentDir == directoryName)
+                    {
+                        createFolder = false;
+                        Debug.Log($"DIRECTORY FOUND {currentDir}");
+                        break;
+                    }
+                }
+
+                if (createFolder)
+                {
+                    Debug.Log($"CREATING DIRECTORY {directory}/{directoryName}");
+
+                    ftpClient.createDirectory($"{directory}/{directoryName}");
+                }
+
+                string fileName = Path.GetFileName(filePath);
+                Debug.Log($"UPLOADING {directory}/{directoryName}/{fileName}");
+
+                ftpClient.upload($"{directory}/{directoryName}/{fileName}", filePath, OnSuccess, OnFail);
+                yield return null;
             }
         }
-
-        if (createFolder)
-        {
-            ftpClient.createDirectory($"{directory}/{directoryName}");
-        }
-
-        string fileName = Path.GetFileName(filePath);
-        ftpClient.upload($"{directory}/{directoryName}/{fileName}", filePath, OnSuccess, OnFail);
     }
 
     private void OnSuccess(string log)

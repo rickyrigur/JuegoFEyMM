@@ -10,6 +10,8 @@ public class MemoryGameController : MonoBehaviour
     public AudioClipSO EndGameAudio;
 
     private AudioManager _audiomanager => FindObjectOfType<AudioManager>();
+
+    public GameObject BackButton;
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -38,6 +40,11 @@ public class MemoryGameController : MonoBehaviour
     public void CheckIfCanExit()
     {
         if (exitAudioPlayed && videoProcessed)
-            SceneManager.LoadScene(0);
+            BackButton.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

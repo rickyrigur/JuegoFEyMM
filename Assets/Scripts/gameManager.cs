@@ -38,6 +38,8 @@ public class gameManager : MonoBehaviour
     public bool exitAudioPlayed;
     public bool videoProcessed;
 
+    public GameObject BackButton;
+
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -183,5 +185,10 @@ public class gameManager : MonoBehaviour
     {
         if (exitAudioPlayed && videoProcessed)
             SceneManager.LoadScene(0);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

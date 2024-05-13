@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using System.Linq;
 
 public class FTP
 {
@@ -14,6 +15,22 @@ public class FTP
     private FtpWebResponse ftpResponse = null;
     private Stream ftpStream = null;
     private int bufferSize = 2048;
+
+    private FtpStatusCode[] okCodes = {
+        FtpStatusCode.CommandOK,
+        FtpStatusCode.CommandExtraneous,
+        FtpStatusCode.DirectoryStatus,
+        FtpStatusCode.FileStatus,
+        FtpStatusCode.SystemType,
+        FtpStatusCode.SendUserCommand,
+        FtpStatusCode.ClosingControl,
+        FtpStatusCode.ClosingData,
+        FtpStatusCode.EnteringPassive,
+        FtpStatusCode.LoggedInProceed,
+        FtpStatusCode.ServerWantsSecureSession,
+        FtpStatusCode.FileActionOK,
+        FtpStatusCode.PathnameCreated
+    };
 
     /* Construct Object */
     public FTP(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; ServicePointManager.ServerCertificateValidationCallback = ServerCertificateValidationCallback;}
@@ -366,6 +383,31 @@ public class FTP
         catch (Exception ex) { Debug.Log(ex.ToString()); }
         /* Return an Empty string Array if an Exception Occurs */
         return new string[] { "" };
+    }
+
+    public bool peek(string directory)
+    {
+        try
+        {
+            /* Create an FTP Request */
+            ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + host + "/" + directory);
+            /* Log in to the FTP Server with the User Name and Password Provided */
+            ftpRequest.Credentials = new NetworkCredential(user, pass);
+            ftpRequest.EnableSsl = true;
+            /* When in doubt, use these options */
+            ftpRequest.UseBinary = true;
+            ftpRequest.UsePassive = true;
+            ftpRequest.KeepAlive = true;
+            /* Specify the Type of FTP Request */
+            ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+            /* Establish Return Communication with the FTP Server */
+            ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+            /* Resource Cleanup */
+            ftpResponse.Close();
+            ftpRequest = null;
+            return okCodes.Contains(ftpResponse.StatusCode) ;
+        }
+        catch (Exception ex) { Debug.Log(ex.ToString()); return false; }
     }
 
     private static bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

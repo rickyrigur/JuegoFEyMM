@@ -1,16 +1,10 @@
 using UnityEngine;
-using FFmpegUnityBind2.Components;
-using FFmpegUnityBind2.Demo;
-using FFmpegUnityBind2;
 using System.IO;
 using UnityEngine.UI;
 using NatML.Recorders;
 using NatML.Recorders.Clocks;
 using System.Collections;
 using UnityEngine.Android;
-using TMPro;
-using System.Collections.Generic;
-using System;
 
 public class VideoCaptureMobile : BaseVideoCapture
 {
@@ -20,8 +14,6 @@ public class VideoCaptureMobile : BaseVideoCapture
     private Image _progressBar;
     [SerializeField]
     private string _gameIdentifier;
-    [SerializeField]
-    private Documento _compilationDocumentLogger;
 
     [Header("Display Data")]
     private WebCamDevice[] cam_devices;
@@ -34,7 +26,10 @@ public class VideoCaptureMobile : BaseVideoCapture
     [SerializeField] private int frames;
 
     private MP4Recorder recorder;
-    private Coroutine recordVideoCoroutine;
+    private Coroutine _recordVideoCoroutine;
+    private bool _recording;
+
+    public Quaternion baseRotation;
 
     void Start()
     {
@@ -63,12 +58,7 @@ public class VideoCaptureMobile : BaseVideoCapture
             else
             {
                 cam_devices = WebCamTexture.devices;
-                List<string> camNames = new List<string>();
-                foreach (WebCamDevice webCamDevice in cam_devices)
-                {
-                    camNames.Add(webCamDevice.name.ToString());
-                }
-                if (camNames.Count >= 1)
+                if (cam_devices.Length >= 1)
                 {
                     //Set front camera
                     webcamTexture = new WebCamTexture(cam_devices[1].name, width, height, frames);
@@ -87,34 +77,42 @@ public class VideoCaptureMobile : BaseVideoCapture
 
     protected override void StartVideoCapture()
     {
-        // Create a recorder
-        recorder = new MP4Recorder(width: width, height: height, frameRate: frames);
+        if (_recording) return;
 
+        _recording = true;
+
+        // Create a recorder
+        recorder = new MP4Recorder(width: width, height: height, frameRate: frames, sampleRate: 48000, channelCount: 2);
+        
         //Start recording
-        recordVideoCoroutine = StartCoroutine(recording());
+        _recordVideoCoroutine = StartCoroutine(Recording());
         
         onStartRecording?.Invoke();
     }
 
-    private IEnumerator recording()
+    private IEnumerator Recording()
     {
         var clock = new RealtimeClock();
 
-        while (true)
+        while (_recording)
         {
             // Commit video frame
             recorder.CommitFrame(webcamTexture.GetPixels32(), clock.timestamp);
             yield return new WaitForEndOfFrame();
         }
+
+        yield return null;
     }
 
     protected override void StopVideoCapture()
     {
-        stopRecording();
+        _recording = false;
+        StopCoroutine(_recordVideoCoroutine);
+        StopRecord();
     }
 
 
-    public async void stopRecording()
+    public async void StopRecord()
     {
         string playerName = PlayerPrefs.GetString(MainMenuController.NAME, "");
 
@@ -123,15 +121,24 @@ public class VideoCaptureMobile : BaseVideoCapture
 
         _path = Path.Combine(Application.persistentDataPath, $"Videos/{playerName}_{_gameIdentifier}.mp4");
 
-        //Stop Coroutine
-        StopCoroutine(recordVideoCoroutine);
+        onEndRecording?.Invoke(_path);
 
-        // Finish writing
+        _processingProgressUI.SetActive(true);
+
         var recordingPath = await recorder.FinishWriting();
 
-        //NativeGallery.Permission permission = NativeGallery.SaveVideoToGallery(recordingPath, _path, (success, path) => Debug.Log("Media save result: " + success + " " + path));
+        webcamTexture.Stop();
 
-        onEndRecording?.Invoke(_path);
-        _processingProgressUI.SetActive(true);
+        // Finish writing
+
+        NativeGallery.Permission permission = NativeGallery.SaveVideoToGallery(recordingPath, "Mobile Recording", _path,
+            (success, path) =>
+            {
+                Debug.Log("Media save result: " + success + " " + path);
+                OnProccessEnd?.Invoke(path);
+            }
+        );
+        recorder = null;
+        webcamTexture = null;
     }
 }

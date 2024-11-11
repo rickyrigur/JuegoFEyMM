@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using System.Linq;
 
-public class FTP
+public class FTP : IConnectionHandler
 {
     private string host = null;
     private string user = null;
@@ -35,7 +35,6 @@ public class FTP
     /* Construct Object */
     public FTP(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; ServicePointManager.ServerCertificateValidationCallback = ServerCertificateValidationCallback;}
 
-    /* Download File */
     public void download(string remoteFile, string localFile)
     {
         try
@@ -79,35 +78,25 @@ public class FTP
         return;
     }
 
-    /* Upload File */
     public void upload(string remoteFile, string localFile, Action<string> onSuccess, Action<string> onFail)
     {
         try
         {
             var file = new FileInfo(localFile);
-            /* Create an FTP Request */
             ftpRequest = WebRequest.Create("ftp://" + host + "/" + remoteFile) as FtpWebRequest;
             ftpRequest.EnableSsl = true;
-            /* Log in to the FTP Server with the User Name and Password Provided */
             ftpRequest.Credentials = new NetworkCredential(user, pass);
-            /* When in doubt, use these options */
             ftpRequest.UseBinary = true;
             ftpRequest.UsePassive = true;
             ftpRequest.KeepAlive = false;
-            /* Specify the Type of FTP Request */
             ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
-            /* Establish Return Communication with the FTP Server */
 
-            /* Open a File Stream to Read the File for Upload */
             FileStream localFileStream = new FileStream(localFile, FileMode.Open);
 
-            /* Buffer for the Downloaded Data */
             byte[] byteBuffer = new byte[bufferSize];
 
-            // Notify server about size of uploaded file
             ftpRequest.ContentLength = file.Length;
 
-            // Set buffer size to 2KB.
             var bufferLength = 2048;
             var buffer = new byte[bufferLength];
             var contentLength = 0;
@@ -115,7 +104,6 @@ public class FTP
             int bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
 
             ftpStream = ftpRequest.GetRequestStream();
-            /* Upload the File by Sending the Buffered Data Until the Transfer is Complete */
             try
             {
                 while (bytesSent != 0)
@@ -131,7 +119,6 @@ public class FTP
                 ftpStream.Close();
                 ftpRequest = null;
             }
-            /* Resource Cleanup */
             
             localFileStream.Close();
             ftpStream.Close();
@@ -146,7 +133,6 @@ public class FTP
         return;
     }
 
-    /* Delete File */
     public void delete(string deleteFile)
     {
         try
@@ -171,7 +157,6 @@ public class FTP
         return;
     }
 
-    /* Rename File */
     public void rename(string currentFileNameAndPath, string newFileName)
     {
         try
@@ -198,7 +183,6 @@ public class FTP
         return;
     }
 
-    /* Create a New Directory on the FTP Server */
     public void createDirectory(string newDirectory)
     {
         try
@@ -224,7 +208,6 @@ public class FTP
         return;
     }
 
-    /* Get the Date/Time a File was Created */
     public string getFileCreatedDateTime(string fileName)
     {
         try
@@ -263,7 +246,6 @@ public class FTP
         return "";
     }
 
-    /* Get the Size of a File */
     public string getFileSize(string fileName)
     {
         try
@@ -302,41 +284,30 @@ public class FTP
         return "";
     }
 
-    /* List Directory Contents File/Folder Name Only */
     public string[] directoryListSimple(string directory)
     {
         try
         {
-            /* Create an FTP Request */
             ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + host + "/" + directory);
-            /* Log in to the FTP Server with the User Name and Password Provided */
             ftpRequest.Credentials = new NetworkCredential(user, pass);
-            ftpRequest.EnableSsl = true;
-            /* When in doubt, use these options */
+            ftpRequest.EnableSsl = false;
             ftpRequest.UseBinary = true;
             ftpRequest.UsePassive = true;
             ftpRequest.KeepAlive = true;
-            /* Specify the Type of FTP Request */
             ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-            /* Establish Return Communication with the FTP Server */
             ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
-            /* Establish Return Communication with the FTP Server */
             ftpStream = ftpResponse.GetResponseStream();
-            /* Get the FTP Server's Response Stream */
             StreamReader ftpReader = new StreamReader(ftpStream);
-            /* Store the Raw Response */
             string directoryRaw = null;
-            /* Read Each Line of the Response and Append a Pipe to Each Line for Easy Parsing */
             try { while (ftpReader.Peek() != -1) { 
                     directoryRaw += ftpReader.ReadLine() + "|"; 
                 } }
             catch (Exception ex) { Debug.Log(ex.ToString()); }
-            /* Resource Cleanup */
+
             ftpReader.Close();
             ftpStream.Close();
             ftpResponse.Close();
             ftpRequest = null;
-            /* Return the Directory Listing as a string Array by Parsing 'directoryRaw' with the Delimiter you Append (I use | in This Example) */
             try { string[] directoryList = directoryRaw.Split("|".ToCharArray()); return directoryList; }
             catch (Exception ex) { Debug.Log(ex.ToString()); }
         }
@@ -345,7 +316,6 @@ public class FTP
         return new string[] { "" };
     }
 
-    /* List Directory Contents in Detail (Name, Size, Created, etc.) */
     public string[] directoryListDetailed(string directory)
     {
         try
@@ -385,29 +355,27 @@ public class FTP
         return new string[] { "" };
     }
 
-    public bool peek(string directory)
+    public bool peek()
     {
         try
         {
             /* Create an FTP Request */
-            ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + host + "/" + directory);
-            /* Log in to the FTP Server with the User Name and Password Provided */
+            ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + host);
             ftpRequest.Credentials = new NetworkCredential(user, pass);
             ftpRequest.EnableSsl = true;
-            /* When in doubt, use these options */
             ftpRequest.UseBinary = true;
             ftpRequest.UsePassive = true;
-            ftpRequest.KeepAlive = true;
-            /* Specify the Type of FTP Request */
+            ftpRequest.KeepAlive = false;
             ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-            /* Establish Return Communication with the FTP Server */
+
             ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
-            /* Resource Cleanup */
             ftpResponse.Close();
             ftpRequest = null;
             return okCodes.Contains(ftpResponse.StatusCode) ;
         }
-        catch (Exception ex) { Debug.Log(ex.ToString()); return false; }
+        catch (Exception ex) {
+            Debug.Log(ex.ToString()); 
+            return false; }
     }
 
     private static bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

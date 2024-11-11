@@ -10,7 +10,7 @@ public class URLUploader : MonoBehaviour
 
     private void Start()
     {
-        abstractUploader = new FTPUploader(onVideoUploadSuccess, onVideoUploadFail);
+        abstractUploader = new SFTPUploader(onVideoUploadSuccess, onVideoUploadFail);
     }
 
     public void UploadFile(string filePath)

@@ -96,7 +96,6 @@ public class VideoCaptureMobile : BaseVideoCapture
 
         while (_recording)
         {
-            // Commit video frame
             recorder.CommitFrame(webcamTexture.GetPixels32(), clock.timestamp);
             yield return new WaitForEndOfFrame();
         }
